@@ -127,6 +127,7 @@ body {
     .glass-container {
         flex-direction: column; /* Stack elements vertically */
         height: auto; /* Adjust height */
+        margin-top: 70px;
     }
 
     .name {
@@ -134,13 +135,13 @@ body {
         text-align: center;
     }
 
-    .profile-info { /* Replace .parent-element with the actual class of the parent element */
+    .profile-info {
         display: grid;
         flex-direction: column;
     }
 
     .info {
-        order: 1; /* Assuming 'info' is a class for the information section */
+        order: 1;
         margin-right: 0;
     }
 
@@ -148,7 +149,7 @@ body {
         order: 2; /* Place the profile picture before the info */
         justify-self: center;
         transform: scale(1.5);
-        margin-top: 100px;
+        margin-top: 50px;
         margin-bottom: 100px;
     }
 
