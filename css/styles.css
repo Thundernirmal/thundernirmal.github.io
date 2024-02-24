@@ -39,6 +39,7 @@ body {
     border-radius: 50%;
     justify-content: center;
     align-items: center;
+    order: 2;
 }
 
 .profile-info {
@@ -120,4 +121,51 @@ body {
 .footer-note a {
     color: rgb(255, 255, 255);
     text-decoration: underline;
+}
+
+@media (max-width: 1100px) {
+    .glass-container {
+        flex-direction: column; /* Stack elements vertically */
+        height: auto; /* Adjust height */
+    }
+
+    .name {
+        font-size: 7em; /* Adjust font size for smaller screens */
+        text-align: center;
+    }
+
+    .profile-info { /* Replace .parent-element with the actual class of the parent element */
+        display: grid;
+        flex-direction: column;
+    }
+
+    .info {
+        order: 1; /* Assuming 'info' is a class for the information section */
+        margin-right: 0;
+    }
+
+    .profile-pic {
+        order: 2; /* Place the profile picture before the info */
+        justify-self: center;
+        transform: scale(1.5);
+        margin-top: 100px;
+        margin-bottom: 100px;
+    }
+
+    .resume {
+        transform: scale(2);
+    }
+
+    .social-media a {
+        transform: scale(3);
+        margin: auto;
+    }
+
+    .social-media {
+        height: 5em;
+        width: 100%;
+    }
+    .about {
+        font-size: 2em;
+    }
 }
