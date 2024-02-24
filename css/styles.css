@@ -131,7 +131,7 @@ body {
     }
 
     .name {
-        font-size: 7em; /* Adjust font size for smaller screens */
+        font-size: 6em; /* Adjust font size for smaller screens */
         text-align: center;
     }
 
@@ -174,8 +174,5 @@ body {
 
     .footer-note {
         position: absolute;
-        top: 0; /* Position at the top of the page */
-        left: 50%;
-        transform: translateX(-50%);
     }
 }
