@@ -44,6 +44,9 @@
         let clickCount = 0;
         const profilePic = document.querySelector('.profile-pic');
 
+        const bgImage = new Image();
+        bgImage.src = './2641074.gif';
+
         profilePic.addEventListener('click', function() {
             clickCount++;
             if (clickCount > 2) {
