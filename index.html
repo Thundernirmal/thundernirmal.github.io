@@ -12,6 +12,10 @@
     <meta name="google-site-verification" content="6znkriAZs-waoznLco4ah19aJ1919qldq_93iq2RXeY" />
 </head>
 <body>
+    <div id="loading">
+        <div class="spinner"></div>
+    </div>
+
     <p class="footer-note">
         Photo by <a href="https://unsplash.com/@andikausg?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">andreas kretschmer</a> on <a href="https://unsplash.com/photos/pink-and-black-abstract-painting-pGQeFanCCYw?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
     </p>
@@ -41,6 +45,11 @@
     </div>
 
     <script>
+        window.addEventListener('load', function() {
+            const loading = document.getElementById('loading');
+            loading.style.display = 'none';
+        });
+
         let clickCount = 0;
         const profilePic = document.querySelector('.profile-pic');
 
