@@ -10,6 +10,12 @@ body {
     box-sizing: border-box;
 }
 
+body::before {
+    content: "";
+    display: none;
+    background: url('../andreas-kretschmer-pGQeFanCCYw-unsplash.jpg') no-repeat;
+}
+
 .glass-container {
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(15px);
