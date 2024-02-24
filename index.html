@@ -48,20 +48,36 @@
         window.addEventListener('load', function() {
             const loading = document.getElementById('loading');
             loading.style.display = 'none';
+
+            document.body.classList.add('slide-in');
         });
+        document.addEventListener('DOMContentLoaded', function() {
 
-        let clickCount = 0;
-        const profilePic = document.querySelector('.profile-pic');
+            let clickCount = 0;
+            const profilePic = document.querySelector('.profile-pic');
+            const glassContainer = document.querySelector('.glass-container');
 
-        const bgImage = new Image();
-        bgImage.src = './2641074.gif';
+            const bgImage = new Image();
+            bgImage.src = './2641074.gif';
 
-        profilePic.addEventListener('click', function() {
-            clickCount++;
-            if (clickCount > 2) {
-                document.body.style.background = "url('./2641074.gif') no-repeat center center fixed";
-                document.body.style.backgroundSize = "cover";
-            }
+            profilePic.addEventListener('click', function() {
+                clickCount++;
+                if (clickCount > 2) {
+                    document.body.style.background = "url('./2641074.gif') no-repeat center center fixed";
+                    document.body.style.backgroundSize = "cover";
+                }
+                if (clickCount > 6) {
+                    glassContainer.classList.add('slide-out');
+                    console.log('You found me');
+                }
+            });
+
+            glassContainer.addEventListener('animationend', function() {
+                if (glassContainer.classList.contains('slide-out')) {
+                glassContainer.remove();
+                console.log('You found me');
+                }
+            });
         });
     </script>
 </body>
