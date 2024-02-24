@@ -39,5 +39,18 @@
             <a href="https://www.instagram.com/katariya_nirmal_3/"><i class="fab fa-instagram"></i></a>
         </div>
     </div>
+
+    <script>
+        let clickCount = 0;
+        const profilePic = document.querySelector('.profile-pic');
+
+        profilePic.addEventListener('click', function() {
+            clickCount++;
+            if (clickCount > 2) {
+                document.body.style.background = "url('./2641074.gif') no-repeat center center fixed";
+                document.body.style.backgroundSize = "cover";
+            }
+        });
+    </script>
 </body>
 </html>
