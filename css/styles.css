@@ -229,4 +229,9 @@ body {
     .footer-note {
         position: absolute;
     }
+
+    /* Remove hover effects */
+    *:hover {
+        all: unset;
+    }
 }
