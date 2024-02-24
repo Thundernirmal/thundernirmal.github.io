@@ -230,8 +230,8 @@ body {
         position: absolute;
     }
 
-    /* Remove hover effects */
     *:hover {
-        all: unset;
+        transform: scale(1) !important;
     }
+
 }
