@@ -67,8 +67,13 @@
                     document.body.style.backgroundSize = "cover";
                 }
                 if (clickCount > 6) {
-                    glassContainer.classList.add('slide-out');
-                    console.log('You found me');
+                    let confirmation = confirm('Do you want to go ahead?');
+                        if (!confirmation) {
+                            clickCount = 0; // Reset clickCount if user clicks 'Cancel'
+                        } else {
+                            glassContainer.classList.add('slide-out');
+                            console.log('You found me');
+                        }
                 }
             });
 
