@@ -165,7 +165,16 @@ body {
         height: 5em;
         width: 100%;
     }
+
     .about {
-        font-size: 2em;
+        font-size: 2.4em;
+        width: 90%;
+    }
+
+    .footer-note {
+        position: absolute;
+        top: 0; /* Position at the top of the page */
+        left: 50%;
+        transform: translateX(-50%);
     }
 }
