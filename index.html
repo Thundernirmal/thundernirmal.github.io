@@ -1,89 +1,108 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en" class="scroll-smooth dark">
 <head>
-    <title>Nirmal Katariya</title>
-    <link href="./favicon.png" rel="icon">
-    <link href="./favicon.png" rel="apple-touch-icon">
-    <link rel="stylesheet" type="text/css" href="./css/styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <meta name="google-site-verification" content="6znkriAZs-waoznLco4ah19aJ1919qldq_93iq2RXeY" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nirmal Katariya · Portfolio</title>
+  <meta name="description" content="Portfolio of Nirmal Katariya">
+  <link rel="icon" href="favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Syne:wght@500;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Outfit', 'ui-sans-serif', 'system-ui'], display: ['Syne','Outfit','ui-sans-serif'] },
+          colors: {
+            pastel: {
+              lavender: '#E6E6FA', mint: '#F0FFF0', peach: '#FFDAB9', powder: '#B0E0E6',
+              rose: '#F7CAC9', serenity: '#92A8D1', sage: '#9CAF88'
+            },
+            base: { cream: '#FFFEF7', gray: '#F5F5F5', text: '#2F2F2F', dark: '#0B0E19', surface: '#16192A' }
+          },
+          boxShadow: { glass: '0 10px 40px rgba(0,0,0,0.12)' },
+          backdropBlur: { 14: '14px' },
+        }
+      }
+    }
+  </script>
+  <style>
+    .glass{background:color-mix(in oklab,white,transparent 75%)}
+    .dark .glass{background:color-mix(in oklab,#0f1427,transparent 55%)}
+    .reveal{opacity:0;filter:blur(6px);transform:translateY(8px);transition:opacity .6s,filter .6s,transform .6s}
+    .reveal.in{opacity:1;filter:blur(0);transform:none}
+  </style>
 </head>
-<body>
-    <div id="loading">
-        <div class="spinner"></div>
-    </div>
+<body class="min-h-screen bg-gradient-to-br from-[#0B0E19] via-[#111735] to-[#0B0E19] text-slate-100">
+  <a class="sr-only focus:not-sr-only focus:absolute focus:m-4 focus:rounded-md focus:bg-pastel-powder focus:px-3 focus:py-2" href="#main">Skip to content</a>
 
-    <p class="footer-note">
-        Photo by <a href="https://unsplash.com/@andikausg?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">andreas kretschmer</a> on <a href="https://unsplash.com/photos/pink-and-black-abstract-painting-pGQeFanCCYw?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
-    </p>
-    <div class="glass-container">
-        <div class="profile-info">
-            <div class="info">
-                <h1 class="name">Nirmal Katariya</h1>
-                <div class="work">
-                    <h3 class="about">Associate consultant, Capgemini</h1>
-                </div>
-            </div>
-            <img src="./IMG_20221203_110519~2.jpg" alt="Profile Picture" class="profile-pic">
+  <header class="sticky top-0 z-50 border-b border-white/20 backdrop-blur-14 bg-white/50 dark:bg-white/5">
+    <nav class="mx-auto flex w-[min(1100px,92vw)] items-center justify-between py-3" aria-label="Primary">
+      <a class="font-display text-2xl font-bold tracking-wide text-green-700" href="#home" aria-label="Nirmal home">Nirmal</a>
+      <div class="flex items-center gap-3">
+        <button class="md:hidden rounded-xl bg-white/10 px-3 py-2 backdrop-blur-14" aria-expanded="false" aria-controls="menu">Menu</button>
+      </div>
+       <ul id="menu" class="hidden gap-3 md:flex">
+        <li><a class="rounded-xl px-3 py-2 hover:bg-pastel-powder/30" href="#about">About</a></li>
+      </ul>    </nav>
+  </header>
+
+  <main id="main">
+    <section id="home" class="relative grid min-h-[82vh] place-items-center overflow-hidden">
+       <div class="mx-auto w-[min(1100px,92vw)] py-16 text-center">        <h1 class="reveal font-display text-4xl font-bold md:text-6xl">Hi, I'm Nirmal</h1>
+        <p class="reveal mt-3 text-lg opacity-90 md:text-xl">Building delightful web experiences with a modern-retro touch</p>
+           <div class="reveal mt-6 flex justify-center gap-3">
+           <a href="#about" class="rounded-2xl border border-white/10 bg-white/10 px-5 py-3 font-semibold text-slate-100 shadow hover:-translate-y-0.5 hover:shadow-lg transition">About Me</a>
+        </div>          <div class="pointer-events-none absolute inset-0 -z-10 mix-blend-normal dark:mix-blend-screen">          <div class="absolute -left-16 -top-10 h-72 w-72 rounded-full bg-pastel-lavender/80 blur-3xl mix-blend-multiply animate-[float_9s_ease-in-out_infinite]"></div>
+          <div class="absolute -bottom-16 -right-20 h-80 w-80 rounded-full bg-pastel-powder/80 blur-3xl mix-blend-multiply animate-[float_11s_ease-in-out_infinite]"></div>
+          <div class="absolute left-1/2 top-2/3 h-56 w-56 -translate-x-1/2 rounded-full bg-pastel-peach/80 blur-3xl mix-blend-multiply animate-[float_13s_ease-in-out_infinite]"></div>
         </div>
-        <div class="button-container">
-            <a href="https://thundernirmal.github.io/resume/Nirmal.pdf">
-                <button class="resume">resume</button>
-            </a>
+      </div>
+    </section>
+
+    <section id="about" class="py-18">
+      <div class="mx-auto w-[min(900px,92vw)]">
+        <h2 class="reveal font-display text-3xl">About</h2>
+        <p class="reveal mt-3 text-lg opacity-90">I'm a developer focused on accessible, performant interfaces. I love modern dark UI, soft pastels, and tasteful motion.</p>
+        <div class="reveal mt-6 grid gap-4 sm:grid-cols-2">
+          <div class="rounded-2xl border border-white/10 bg-white/[0.04] p-4 backdrop-blur">
+            <h3 class="font-semibold">Expertise</h3>
+            <p class="mt-1 text-sm opacity-90">HTML, CSS (Grid/Flex), JavaScript, Accessibility, Performance, Animations</p>
+          </div>
+          <div class="rounded-2xl border border-white/10 bg-white/[0.04] p-4 backdrop-blur">
+            <h3 class="font-semibold">Currently</h3>
+            <p class="mt-1 text-sm opacity-90">Crafting elegant, fast, and inclusive experiences with a retro-modern vibe.</p>
+          </div>
         </div>
-        <p class="about">Being born into an era with technology, I have come to realize that it is an integral part of the present and the future. Since my tenth grade, the world of Android apps, Augmented Reality and internet of things fascinated me a lot.</p>
-        <p class="about">I'm currently on a client project to supporting STP flows and trade booking at their front desk team.</p>
-        <div class="social-media">
-            <a href="https://www.facebook.com/nirmal.katariya.310"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://twitter.com/Nirmal_310"><i class="fab fa-twitter"></i></a>
-            <a href="https://www.linkedin.com/in/nirmal-katariya/"><i class="fab fa-linkedin-in"></i></a>
-            <a href="https://www.instagram.com/katariya_nirmal_3/"><i class="fab fa-instagram"></i></a>
-        </div>
-    </div>
+      </div>
+    </section>
 
-    <script>
-        window.addEventListener('load', function() {
-            const loading = document.getElementById('loading');
-            loading.style.display = 'none';
 
-            document.body.classList.add('slide-in');
-        });
-        document.addEventListener('DOMContentLoaded', function() {
 
-            let clickCount = 0;
-            const profilePic = document.querySelector('.profile-pic');
-            const glassContainer = document.querySelector('.glass-container');
+    
 
-            const bgImage = new Image();
-            bgImage.src = './2641074.gif';
+  </main>
 
-            profilePic.addEventListener('click', function() {
-                clickCount++;
-                if (clickCount > 2) {
-                    document.body.style.background = "url('./2641074.gif') no-repeat center center fixed";
-                    document.body.style.backgroundSize = "cover";
-                }
-                if (clickCount > 6) {
-                    let confirmation = confirm('Do you want to go ahead?');
-                        if (!confirmation) {
-                            clickCount = 0; // Reset clickCount if user clicks 'Cancel'
-                        } else {
-                            glassContainer.classList.add('slide-out');
-                            console.log('You found me');
-                        }
-                }
-            });
+  <footer class="border-t border-white/10 bg-white/5 py-8 backdrop-blur">
+    <div class="mx-auto w-[min(1100px,92vw)]"><small>© <span id="year"></span> Nirmal Katariya</small></div>
+  </footer>
 
-            glassContainer.addEventListener('animationend', function() {
-                if (glassContainer.classList.contains('slide-out')) {
-                glassContainer.remove();
-                console.log('You found me');
-                }
-            });
-        });
-    </script>
+  <script>
+    const mbtn = document.querySelector('header button[aria-controls="menu"]');
+    const menu = document.getElementById('menu');
+    mbtn.addEventListener('click', () => {
+      const exp = mbtn.getAttribute('aria-expanded') === 'true';
+      mbtn.setAttribute('aria-expanded', String(!exp));
+      menu.classList.toggle('hidden');
+    });
+
+
+    const io = new IntersectionObserver(es => es.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in') }), {threshold:.15});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
