@@ -32,16 +32,16 @@ img{max-width:100%;display:block}
   .menu.open{display:flex}
 }
 
-.hero{min-height:82vh;display:grid;place-items:center;position:relative;overflow:hidden}
+.hero{min-height:68vh;display:grid;place-items:center;position:relative;overflow:hidden}
 .hero .title{font-family:"Syne",sans-serif;font-weight:700;font-size:clamp(38px,6vw,72px);margin:0}
 .hero .subtitle{font-size:clamp(16px,2.4vw,22px);opacity:.9}
 .decor .orb{position:absolute;filter:blur(24px);border-radius:50%;opacity:.7;mix-blend:multiply;animation:float 18s ease-in-out infinite}
-.orb-a{width:280px;height:280px;background:radial-gradient(circle at 30% 30%,var(--lavender),transparent 70%);left:-60px;top:-40px}
-.orb-b{width:300px;height:300px;background:radial-gradient(circle at 70% 40%,var(--powder),transparent 70%);right:-80px;bottom:-60px;animation-duration:22s}
-.orb-c{width:220px;height:220px;background:radial-gradient(circle at 50% 60%,var(--peach),transparent 70%);left:40%;top:60%;animation-duration:26s}
+.orb-a{width:280px;height:280px;background:radial-gradient(circle at 30% 30%,#525f73,transparent 70%);left:-60px;top:-40px}
+.orb-b{width:300px;height:300px;background:radial-gradient(circle at 70% 40%,#34d399,transparent 70%);right:-80px;bottom:-60px;animation-duration:22s}
+.orb-c{width:220px;height:220px;background:radial-gradient(circle at 50% 60%,#3d1e9b,transparent 70%);left:40%;top:60%;animation-duration:26s}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
 
-.section{padding:72px 0}
+.section{padding:56px 0}
 .grid-2{display:grid;grid-template-columns:1.1fr .9fr;gap:2rem}
 @media (max-width:960px){.grid-2{grid-template-columns:1fr}}
 
