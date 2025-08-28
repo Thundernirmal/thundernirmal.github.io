@@ -37,6 +37,24 @@
     .dark .glass{background:color-mix(in oklab,#0f1427,transparent 55%)}
     .reveal{opacity:0;filter:blur(6px);transform:translateY(8px);transition:opacity .6s,filter .6s,transform .6s}
     .reveal.in{opacity:1;filter:blur(0);transform:none}
+    .blob{will-change:transform,border-radius,opacity}
+    @keyframes float {
+      0%,100%{transform:var(--base, translate3d(0,0,0)) translate3d(0,0,0) rotate(0deg) scale(1)}
+      20%{transform:var(--base, translate3d(0,0,0)) translate3d(24px,-20px,0) rotate(4deg) scale(1.06)}
+      50%{transform:var(--base, translate3d(0,0,0)) translate3d(-28px,16px,0) rotate(-3deg) scale(0.95)}
+      80%{transform:var(--base, translate3d(0,0,0)) translate3d(16px,22px,0) rotate(3deg) scale(1.02)}
+    }
+    @keyframes morph {
+      0%,100%{border-radius:50%}
+      25%{border-radius:42% 58% 60% 40% / 45% 55% 45% 55%}
+      50%{border-radius:60% 40% 45% 55% / 52% 48% 52% 48%}
+      75%{border-radius:55% 45% 58% 42% / 40% 60% 40% 60%}
+    }
+    @keyframes pulseBlob {
+      0%,100%{opacity:.75}
+      50%{opacity:.95}
+    }
+    @media (prefers-reduced-motion: reduce){.blob{animation:none!important}}
   </style>
 </head>
 <body class="min-h-screen bg-gradient-to-br from-[#0B0E19] via-[#111735] to-[#0B0E19] text-slate-100">
@@ -68,9 +86,9 @@
           <img src="IMG_20221203_110519~2.jpg" alt="Portrait of Nirmal" class="mx-auto mt-6 mb-2 h-56 w-56 rounded-full object-cover ring-1 ring-white/20 shadow-glass md:mt-0 md:mb-0 md:h-60 md:w-60 md:ml-6" loading="eager"/>
         </div>
         <div class="pointer-events-none absolute inset-0 -z-10 mix-blend-normal dark:mix-blend-screen">
-          <div class="absolute -left-16 -top-10 h-72 w-72 rounded-full bg-pastel-lavender/80 blur-3xl mix-blend-multiply animate-[float_9s_ease-in-out_infinite]"></div>
-          <div class="absolute -bottom-16 -right-20 h-80 w-80 rounded-full bg-pastel-powder/80 blur-3xl mix-blend-multiply animate-[float_11s_ease-in-out_infinite]"></div>
-          <div class="absolute left-1/2 top-2/3 h-56 w-56 -translate-x-1/2 rounded-full bg-pastel-peach/80 blur-3xl mix-blend-multiply animate-[float_13s_ease-in-out_infinite]"></div>
+          <div class="blob absolute -left-16 -top-10 h-72 w-72 rounded-full bg-pastel-lavender/80 blur-3xl mix-blend-multiply animate-[float_10s_ease-in-out_infinite,morph_22s_ease-in-out_infinite,pulseBlob_12s_ease-in-out_infinite]"></div>
+          <div class="blob absolute -bottom-16 -right-20 h-80 w-80 rounded-full bg-pastel-powder/80 blur-3xl mix-blend-multiply animate-[float_12s_ease-in-out_infinite,morph_26s_ease-in-out_infinite,pulseBlob_14s_ease-in-out_infinite]"></div>
+          <div class="blob absolute left-1/2 top-2/3 h-56 w-56 -translate-x-1/2 rounded-full bg-pastel-peach/80 blur-3xl mix-blend-multiply animate-[float_14s_ease-in-out_infinite,morph_30s_ease-in-out_infinite,pulseBlob_16s_ease-in-out_infinite]" style="--base: translateX(-50%)"></div>
         </div>
        </div>
        <div aria-hidden class="pointer-events-none absolute inset-x-0 bottom-0 h-10 bg-gradient-to-b from-transparent to-white/3 backdrop-blur-[2px]"></div>
