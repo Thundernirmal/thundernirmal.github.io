@@ -118,7 +118,20 @@
             <div class="flex items-start justify-between gap-3">
               <div>
                 <h3 class="text-xl font-semibold">Associate System Engineer · Goldman Sachs</h3>
-                <p class="text-sm opacity-90">Full-time · May 2025 – Present · 4 mos</p>
+                <p class="text-sm opacity-90">
+                  Full-time · May 2025 – Present ·
+                  <span id="gs-months"></span>
+                </p>
+                <script>
+                  // Calculate months since May 2025
+                  (() => {
+                    const start = new Date(2025, 4); // May is month 4 (0-indexed)
+                    const now = new Date();
+                    let months = (now.getFullYear() - start.getFullYear()) * 12 + (now.getMonth() - start.getMonth());
+                    if (months < 0) months = 0;
+                    document.getElementById('gs-months').textContent = months + (months === 1 ? ' mo' : ' mos');
+                  })();
+                </script>
               </div>
               <time class="shrink-0 text-sm opacity-80">May 2025 – Present</time>
             </div>
