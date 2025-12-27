@@ -1,0 +1,51 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <!-- 
+    Style: MATERIAL VELOCITY
+    - Background: Light Surface Color (Google Material You style 'Surface Container Low') -> Soft Blue/Grey #F0F4F8 or similar. Let's use a very light, crisp tone.
+    - Font: Heavy/Black weight.
+    - Effect: Option 5 Speed Lines.
+  -->
+
+  <!-- Material You Squircle Background -->
+  <!-- Using a soft pastel blue-grey, common in modern UI -->
+  <path d="M 512 256 C 512 430 430 512 256 512 C 82 512 0 430 0 256 C 0 82 82 0 256 0 C 430 0 512 82 512 256 Z" fill="#E8EDF4"/>
+
+  <!-- Definition for the Speed Cuts (Option 5 style) -->
+  <defs>
+    <mask id="materialSpeedCuts">
+      <rect width="100%" height="100%" fill="white"/>
+      
+      <!-- The Cuts: Clean, uniform lines like a scanline or motion blur -->
+      <!-- Top slice -->
+      <rect x="0" y="150" width="512" height="15" fill="black" />
+      
+      <!-- Mid-High slice -->
+      <rect x="0" y="220" width="512" height="10" fill="black" />
+      
+      <!-- Mid-Low slice -->
+      <rect x="100" y="310" width="412" height="12" fill="black" />
+      
+      <!-- Bottom slice -->
+      <rect x="0" y="380" width="350" height="18" fill="black" />
+    </mask>
+  </defs>
+
+  <!-- The Content -->
+  <g mask="url(#materialSpeedCuts)">
+    <!-- Text Color: 'On Surface' - Deep, almost black blue-grey -->
+    <text 
+      x="50%" 
+      y="54%" 
+      font-family="Arial Black, Roboto Black, Impact, sans-serif" 
+      font-weight="900" 
+      font-style="italic" 
+      font-size="320" 
+      fill="#1A1C1E" 
+      text-anchor="middle" 
+      dominant-baseline="central" 
+      letter-spacing="-15"
+      transform="skewX(-8)"
+    >NK</text>
+  </g>
+
+</svg>
