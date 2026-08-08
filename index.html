@@ -50,189 +50,106 @@
       background: color-mix(in oklab, #181825, transparent 55%) /* ctp-mantle */
     }
 
-    .reveal {
+    :where(section[id], #main) {
+      scroll-margin-top: 5rem
+    }
+
+    body {
+      overflow-x: clip
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 2px solid #89dceb;
+      outline-offset: 3px
+    }
+
+    .reveal,
+    .reveal-left,
+    .reveal-right,
+    .reveal-scale {
       opacity: 0;
-      filter: blur(6px);
-      transform: translateY(8px);
-      transition: opacity .8s cubic-bezier(.25, .46, .45, .94), filter .8s cubic-bezier(.25, .46, .45, .94), transform .8s cubic-bezier(.25, .46, .45, .94)
-    }
-
-    .reveal.in {
-      opacity: 1;
-      filter: blur(0);
-      transform: none
-    }
-
-    .reveal-left {
-      opacity: 0;
-      filter: blur(4px);
-      transform: translateX(-30px);
-      transition: opacity .8s cubic-bezier(.25, .46, .45, .94), filter .8s cubic-bezier(.25, .46, .45, .94), transform .8s cubic-bezier(.25, .46, .45, .94)
-    }
-
-    .reveal-left.in {
-      opacity: 1;
-      filter: blur(0);
-      transform: none
-    }
-
-    .reveal-right {
-      opacity: 0;
-      filter: blur(4px);
-      transform: translateX(30px);
-      transition: opacity .8s cubic-bezier(.25, .46, .45, .94), filter .8s cubic-bezier(.25, .46, .45, .94), transform .8s cubic-bezier(.25, .46, .45, .94)
-    }
-
-    .reveal-right.in {
-      opacity: 1;
-      filter: blur(0);
-      transform: none
+      transform: translateY(12px);
+      transition: opacity .45s ease-out, transform .45s cubic-bezier(.25, .46, .45, .94)
     }
 
     .reveal-scale {
-      opacity: 0;
-      filter: blur(4px);
-      transform: scale(0.9);
-      transition: opacity .8s cubic-bezier(.25, .46, .45, .94), filter .8s cubic-bezier(.25, .46, .45, .94), transform .8s cubic-bezier(.25, .46, .45, .94)
+      transform: translateY(12px) scale(.98)
     }
 
+    .reveal.in,
+    .reveal-left.in,
+    .reveal-right.in,
     .reveal-scale.in {
       opacity: 1;
-      filter: blur(0);
-      transform: scale(1)
+      transform: none
     }
 
     .stagger>* {
       opacity: 0;
-      filter: blur(4px);
-      transform: translateY(20px);
-      transition: opacity .6s cubic-bezier(.25, .46, .45, .94), filter .6s cubic-bezier(.25, .46, .45, .94), transform .6s cubic-bezier(.25, .46, .45, .94)
+      transform: translateY(12px);
+      transition: opacity .35s ease-out, transform .35s cubic-bezier(.25, .46, .45, .94);
+      transition-delay: 0ms
     }
 
     .stagger.in>* {
       opacity: 1;
-      filter: blur(0);
-      transform: none
-    }
-
-    .stagger.in>*:nth-child(1) {
-      transition-delay: 0.1s
-    }
-
-    .stagger.in>*:nth-child(2) {
-      transition-delay: 0.2s
-    }
-
-    .stagger.in>*:nth-child(3) {
-      transition-delay: 0.3s
-    }
-
-    .stagger.in>*:nth-child(4) {
-      transition-delay: 0.4s
-    }
-
-    .stagger.in>*:nth-child(5) {
-      transition-delay: 0.5s
-    }
-
-    .stagger.in>*:nth-child(6) {
-      transition-delay: 0.6s
-    }
-
-    .char-reveal {
-      display: inline-block;
-      opacity: 0;
-      transform: translateY(40px) rotateZ(-5deg);
-      transition: opacity .6s cubic-bezier(.25, .46, .45, .94), transform .6s cubic-bezier(.25, .46, .45, .94)
-    }
-
-    .char-reveal.revealed {
-      opacity: 1;
-      transform: translateY(0) rotateZ(0)
-    }
-
-    .parallax-slow {
-      will-change: transform
-    }
-
-    .parallax-fast {
-      will-change: transform
+      transform: none;
+      transition-delay: calc(var(--stagger-index, 0) * 60ms)
     }
 
     .blob {
-      will-change: transform, border-radius, opacity
+      will-change: transform
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .blob {
+        animation: float 24s ease-in-out infinite
+      }
+
+      .blob-sapphire {
+        animation-delay: -12s
+      }
     }
 
     @keyframes float {
-
       0%,
       100% {
-        transform: var(--base, translate3d(0, 0, 0)) translate3d(0, 0, 0) rotate(0deg) scale(1)
-      }
-
-      20% {
-        transform: var(--base, translate3d(0, 0, 0)) translate3d(24px, -20px, 0) rotate(4deg) scale(1.06)
+        transform: translate3d(0, 0, 0)
       }
 
       50% {
-        transform: var(--base, translate3d(0, 0, 0)) translate3d(-28px, 16px, 0) rotate(-3deg) scale(0.95)
-      }
-
-      80% {
-        transform: var(--base, translate3d(0, 0, 0)) translate3d(16px, 22px, 0) rotate(3deg) scale(1.02)
+        transform: translate3d(0, -12px, 0)
       }
     }
 
-    @keyframes morph {
-
-      0%,
-      100% {
-        border-radius: 50%
-      }
-
-      25% {
-        border-radius: 42% 58% 60% 40% / 45% 55% 45% 55%
-      }
-
-      50% {
-        border-radius: 60% 40% 45% 55% / 52% 48% 52% 48%
-      }
-
-      75% {
-        border-radius: 55% 45% 58% 42% / 40% 60% 40% 60%
-      }
+    .motion-lift {
+      transition: transform .2s ease-out, background-color .25s ease, border-color .25s ease, color .25s ease
     }
 
-    @keyframes pulseBlob {
-
-      0%,
-      100% {
-        opacity: .75
-      }
-
-      50% {
-        opacity: .95
-      }
-    }
-
-
-
-    .magnetic-hover {
-      transition: transform .3s cubic-bezier(.25, .46, .45, .94)
+    .motion-lift:hover,
+    .motion-lift:focus-visible {
+      transform: translateY(-2px)
     }
 
     @media (prefers-reduced-motion: reduce) {
-
-      .blob {
-        animation: none !important
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+        scroll-behavior: auto !important
       }
 
-      .char-reveal,
       .reveal,
       .reveal-left,
       .reveal-right,
-      .reveal-scale {
-        transition: none
+      .reveal-scale,
+      .stagger>* {
+        opacity: 1;
+        transform: none;
+        transition-delay: 0ms !important
       }
     }
   </style>
@@ -254,7 +171,7 @@
         </svg>
         Menu
       </button>
-      <ul id="menu" class="hidden md:flex md:flex-row md:gap-3" aria-hidden="true">
+      <ul id="menu" class="hidden md:flex md:flex-row md:gap-3">
         <li><a class="rounded-lg px-3 py-2 text-ctp-subtext0 hover:text-ctp-text hover:bg-white/0 md:hover:bg-ctp-surface0/50 transition-colors" href="#about">About</a></li>
         <li><a class="rounded-lg px-3 py-2 text-ctp-subtext0 hover:text-ctp-text hover:bg-white/0 md:hover:bg-ctp-surface0/50 transition-colors" href="#experience">Experience</a></li>
         <li><a class="rounded-lg px-3 py-2 text-ctp-subtext0 hover:text-ctp-text hover:bg-white/0 md:hover:bg-ctp-surface0/50 transition-colors" href="#playground">Playground</a></li>
@@ -267,15 +184,15 @@
       <div class="mx-auto w-[min(900px,92vw)] py-10 sm:py-14">
         <div class="grid items-center gap-4 md:gap-6 text-left md:grid-cols-[1fr_auto]">
           <div class="reveal-left">
-            <h1 class="font-display text-5xl font-bold md:text-6xl split-text text-ctp-text">Hi, I'm Nirmal</h1>
+            <h1 class="font-display text-5xl font-bold md:text-6xl text-ctp-text">Hi, I'm Nirmal</h1>
             <p class="reveal mt-3 text-xl font-medium text-ctp-subtext1 md:text-2xl">Associate System Engineer at Goldman Sachs
               | IIT Jodhpur</p>
           </div>
-          <img src="IMG_20221203_110519~2.jpg" alt="Portrait of Nirmal"
+          <img src="IMG_20221203_110519~2.jpg" alt="Portrait of Nirmal" width="480" height="480" fetchpriority="high"
             class="reveal-right mx-auto mt-6 mb-2 h-56 w-56 rounded-full object-cover ring-2 ring-ctp-surface1 shadow-glass md:mt-0 md:mb-0 md:h-60 md:w-60 md:ml-6"
             loading="eager" />
         </div>
-        <div class="reveal-scale mx-auto flex justify-center mt-8 sm:mt-12 animate-bounce">
+        <div class="reveal-scale mx-auto flex justify-center mt-8 sm:mt-12 motion-safe:animate-bounce">
           <svg class="h-5 w-5 sm:h-6 sm:w-6 text-ctp-overlay0" fill="none" viewBox="0 0 24 24" stroke="currentColor"
             aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
@@ -283,16 +200,10 @@
         </div>
         <div class="pointer-events-none absolute inset-0 -z-10 mix-blend-screen">
           <div
-            class="blob parallax-slow absolute -left-16 -top-10 h-72 w-72 rounded-full bg-ctp-mauve/20 blur-3xl animate-[float_10s_ease-in-out_infinite,morph_22s_ease-in-out_infinite,pulseBlob_12s_ease-in-out_infinite]">
+            class="blob blob-mauve absolute -left-16 -top-10 h-72 w-72 rounded-full bg-ctp-mauve/20 blur-3xl">
           </div>
           <div
-            class="blob parallax-fast absolute -bottom-16 -right-20 h-80 w-80 rounded-full bg-ctp-sapphire/20 blur-3xl animate-[float_12s_ease-in-out_infinite,morph_26s_ease-in-out_infinite,pulseBlob_14s_ease-in-out_infinite]">
-          </div>
-          <div
-            class="blob parallax-slow absolute left-1/2 top-2/3 h-56 w-56 -translate-x-1/2 rounded-full bg-ctp-peach/20 blur-3xl animate-[float_14s_ease-in-out_infinite,morph_30s_ease-in-out_infinite,pulseBlob_16s_ease-in-out_infinite]"
-            style="--base: translateX(-50%)"></div>
-          <div
-            class="blob parallax-fast absolute left-1/4 bottom-1/4 h-40 w-40 rounded-full bg-ctp-pink/20 blur-3xl animate-[float_16s_ease-in-out_infinite,morph_28s_ease-in-out_infinite,pulseBlob_18s_ease-in-out_infinite]">
+            class="blob blob-sapphire absolute -bottom-16 -right-20 h-80 w-80 rounded-full bg-ctp-sapphire/20 blur-3xl">
           </div>
         </div>
         <div aria-hidden
@@ -302,14 +213,14 @@
     </section>
     <section id="about" class="relative pt-6 pb-6 sm:pt-10 sm:pb-8">
       <div class="mx-auto w-[min(900px,92vw)]">
-        <h2 class="reveal font-display text-4xl md:text-5xl split-text text-ctp-text">About</h2>
+        <h2 class="reveal font-display text-4xl md:text-5xl text-ctp-text">About</h2>
         <p class="reveal mt-4 text-lg md:text-xl text-ctp-subtext0 max-w-3xl">I’m a full-time Linux enjoyer and part-time
           computer archaeologist, forever digging up hardware memories like they’re rare loot. I love tinkering with
           PCs, breaking things “for science,” and customizing my setup until it’s 10% faster and 200% cooler. If it
           boots, beeps, or has a suspiciously loud fan, I’m emotionally attached already.</p>
         <div class="stagger mt-6 grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
           <div
-            class="magnetic-hover rounded-xl border border-ctp-surface0 bg-ctp-surface0/30 p-6 backdrop-blur hover:bg-ctp-surface0/70 hover:border-ctp-surface1 transition-all duration-300">
+            class="motion-lift rounded-xl border border-ctp-surface0 bg-ctp-surface0/30 p-6 backdrop-blur hover:bg-ctp-surface0/70 hover:border-ctp-surface1 transition-colors duration-300">
             <div class="rounded-lg bg-ctp-mauve/20 w-12 h-12 flex items-center justify-center mb-4">
               <svg class="h-6 w-6 text-ctp-mauve" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -320,7 +231,7 @@
             <p class="mt-2 text-sm text-ctp-subtext1">C++, FIX</p>
           </div>
           <div
-            class="magnetic-hover rounded-xl border border-ctp-surface0 bg-ctp-surface0/30 p-6 backdrop-blur hover:bg-ctp-surface0/70 hover:border-ctp-surface1 transition-all duration-300">
+            class="motion-lift rounded-xl border border-ctp-surface0 bg-ctp-surface0/30 p-6 backdrop-blur hover:bg-ctp-surface0/70 hover:border-ctp-surface1 transition-colors duration-300">
             <div class="rounded-lg bg-ctp-sapphire/20 w-12 h-12 flex items-center justify-center mb-4">
               <svg class="h-6 w-6 text-ctp-sapphire" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -331,7 +242,7 @@
             <p class="mt-2 text-sm text-ctp-subtext1">Supporting STP flows and trade booking at their front desk</p>
           </div>
           <div
-            class="magnetic-hover rounded-xl border border-ctp-surface0 bg-ctp-surface0/30 p-6 backdrop-blur hover:bg-ctp-surface0/70 hover:border-ctp-surface1 transition-all duration-300">
+            class="motion-lift rounded-xl border border-ctp-surface0 bg-ctp-surface0/30 p-6 backdrop-blur hover:bg-ctp-surface0/70 hover:border-ctp-surface1 transition-colors duration-300">
             <div class="rounded-lg bg-ctp-peach/20 w-12 h-12 flex items-center justify-center mb-4">
               <svg class="h-6 w-6 text-ctp-peach" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -347,14 +258,14 @@
 
     <section id="experience" class="relative py-6 sm:py-10">
       <div class="mx-auto w-[min(900px,92vw)]">
-        <h2 class="reveal font-display text-4xl md:text-5xl split-text text-ctp-text">Experience</h2>
+        <h2 class="reveal font-display text-4xl md:text-5xl text-ctp-text">Experience</h2>
         <div class="mt-6 space-y-4">
           <div
-            class="reveal-left magnetic-hover relative rounded-xl border border-ctp-surface0 bg-ctp-surface0/30 p-6 backdrop-blur hover:bg-ctp-surface0/70 hover:border-ctp-surface1 transition-all duration-300">
+            class="reveal-left motion-lift relative rounded-xl border border-ctp-surface0 bg-ctp-surface0/30 p-6 backdrop-blur hover:bg-ctp-surface0/70 hover:border-ctp-surface1 transition-colors duration-300">
             <div class="relative flex items-start justify-between gap-4">
               <div class="flex-1">
                 <div class="flex items-center gap-3 mb-2">
-                  <div class="w-3 h-3 bg-ctp-mauve rounded-full animate-pulse"></div>
+                  <div class="w-3 h-3 bg-ctp-mauve rounded-full motion-safe:animate-pulse"></div>
                   <h3 class="text-xl md:text-2xl font-semibold text-ctp-text">Associate System Engineer</h3>
                 </div>
                 <p class="text-ctp-mauve font-medium">Goldman Sachs</p>
@@ -384,7 +295,7 @@
           </div>
 
           <div
-            class="reveal-left magnetic-hover relative rounded-xl border border-ctp-surface0 bg-ctp-surface0/30 p-6 backdrop-blur hover:bg-ctp-surface0/70 hover:border-ctp-surface1 transition-all duration-300"
+            class="reveal-left motion-lift relative rounded-xl border border-ctp-surface0 bg-ctp-surface0/30 p-6 backdrop-blur hover:bg-ctp-surface0/70 hover:border-ctp-surface1 transition-colors duration-300"
             style="transition-delay: 0.2s">
             <div class="relative flex items-start justify-between gap-4">
               <div class="flex-1">
@@ -425,16 +336,16 @@
 
     <section id="playground" class="relative py-6 sm:py-10">
       <div class="mx-auto w-[min(900px,92vw)]">
-        <h2 class="reveal font-display text-4xl md:text-5xl split-text text-ctp-text">Playground</h2>
+        <h2 class="reveal font-display text-4xl md:text-5xl text-ctp-text">Playground</h2>
         <div class="stagger mt-6 grid sm:grid-cols-2 gap-4">
-          <a href="https://zsh.nirmalkatariya.com/" target="_blank" class="reveal-left group block p-5 rounded-xl border border-ctp-surface0 bg-ctp-surface0/10 backdrop-blur hover:bg-ctp-surface0/40 hover:border-ctp-surface1 transition-all duration-300">
+          <a href="https://zsh.nirmalkatariya.com/" target="_blank" class="reveal-left group block p-5 rounded-xl border border-ctp-surface0 bg-ctp-surface0/10 backdrop-blur hover:bg-ctp-surface0/40 hover:border-ctp-surface1 transition-colors duration-300">
             <div class="flex items-center justify-between mb-2">
               <h3 class="font-semibold text-lg text-ctp-text group-hover:text-ctp-mauve transition-colors">Nirmal's Shell</h3>
               <svg class="h-5 w-5 text-ctp-subtext0 group-hover:text-ctp-mauve transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
             </div>
             <p class="text-sm text-ctp-subtext1">A living guide to my aliases, functions, and workflows.</p>
           </a>
-          <a href="https://retro.nirmalkatariya.com/" target="_blank" class="reveal-right group block p-5 rounded-xl border border-ctp-surface0 bg-ctp-surface0/10 backdrop-blur hover:bg-ctp-surface0/40 hover:border-ctp-surface1 transition-all duration-300">
+          <a href="https://retro.nirmalkatariya.com/" target="_blank" class="reveal-right group block p-5 rounded-xl border border-ctp-surface0 bg-ctp-surface0/10 backdrop-blur hover:bg-ctp-surface0/40 hover:border-ctp-surface1 transition-colors duration-300">
             <div class="flex items-center justify-between mb-2">
               <h3 class="font-semibold text-lg text-ctp-text group-hover:text-ctp-sapphire transition-colors">Retro Terminal Port</h3>
               <svg class="h-5 w-5 text-ctp-subtext0 group-hover:text-ctp-sapphire transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
@@ -447,7 +358,7 @@
 
     <section id="contact" class="py-6 sm:py-10">
       <div class="mx-auto w-[min(900px,92vw)]">
-        <h2 class="reveal font-display text-4xl md:text-5xl split-text text-ctp-text">Contact</h2>
+        <h2 class="reveal font-display text-4xl md:text-5xl text-ctp-text">Contact</h2>
         <p class="reveal mt-4 text-lg text-ctp-subtext1">Let's connect and build something amazing together</p>
 
         <div class="stagger mt-6">
@@ -456,7 +367,7 @@
               <h3 class="text-2xl font-semibold mb-6 text-ctp-text">Get in Touch</h3>
               <div class="space-y-4">
                 <a href="mailto:katariya.1@iitj.ac.in"
-                  class="magnetic-hover flex items-center gap-4 p-4 rounded-xl border border-ctp-surface0 bg-ctp-surface0/30 backdrop-blur hover:bg-ctp-surface0/70 hover:border-ctp-surface1 transition-all duration-300">
+                  class="motion-lift flex items-center gap-4 p-4 rounded-xl border border-ctp-surface0 bg-ctp-surface0/30 backdrop-blur hover:bg-ctp-surface0/70 hover:border-ctp-surface1 transition-colors duration-300">
                   <div
                     class="w-12 h-12 rounded-lg bg-ctp-sapphire/20 flex items-center justify-center group-hover:scale-110 transition-transform">
                     <svg class="h-6 w-6 text-ctp-sapphire" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -478,7 +389,7 @@
               <h3 class="text-2xl font-semibold mb-6 text-ctp-text">Connect</h3>
               <div class="grid grid-cols-3 gap-3">
                 <a href="https://github.com/thundernirmal" aria-label="GitHub"
-                  class="magnetic-hover group grid place-items-center rounded-xl border border-ctp-surface0 bg-ctp-surface0/30 p-4 hover:bg-ctp-surface0/70 hover:border-ctp-surface1 transition-all duration-300">
+                  class="motion-lift group grid place-items-center rounded-xl border border-ctp-surface0 bg-ctp-surface0/30 p-4 hover:bg-ctp-surface0/70 hover:border-ctp-surface1 transition-colors duration-300">
                   <svg class="h-6 w-6 opacity-90 group-hover:opacity-100 transition-opacity" viewBox="0 0 24 24"
                     fill="currentColor" aria-hidden="true">
                     <path
@@ -486,7 +397,7 @@
                   </svg>
                 </a>
                 <a href="https://www.linkedin.com/in/nirmal-katariya/" aria-label="LinkedIn"
-                  class="magnetic-hover group grid place-items-center rounded-xl border border-ctp-surface0 bg-ctp-surface0/30 p-4 hover:bg-ctp-surface0/70 hover:border-ctp-surface1 transition-all duration-300">
+                  class="motion-lift group grid place-items-center rounded-xl border border-ctp-surface0 bg-ctp-surface0/30 p-4 hover:bg-ctp-surface0/70 hover:border-ctp-surface1 transition-colors duration-300">
                   <svg class="h-6 w-6 opacity-90 group-hover:opacity-100 transition-opacity" viewBox="0 0 24 24"
                     fill="currentColor" aria-hidden="true">
                     <path
@@ -494,7 +405,7 @@
                   </svg>
                 </a>
                 <a href="https://x.com/Nirmal_310" aria-label="Twitter"
-                  class="magnetic-hover group grid place-items-center rounded-xl border border-ctp-surface0 bg-ctp-surface0/30 p-4 hover:bg-ctp-surface0/70 hover:border-ctp-surface1 transition-all duration-300">
+                  class="motion-lift group grid place-items-center rounded-xl border border-ctp-surface0 bg-ctp-surface0/30 p-4 hover:bg-ctp-surface0/70 hover:border-ctp-surface1 transition-colors duration-300">
                   <svg class="h-6 w-6 opacity-90 group-hover:opacity-100 transition-opacity" viewBox="0 0 24 24"
                     fill="currentColor" aria-hidden="true">
                     <path
@@ -502,7 +413,7 @@
                   </svg>
                 </a>
                 <a href="https://instagram.com/katariya_nirmal_3" aria-label="Instagram"
-                  class="magnetic-hover group grid place-items-center rounded-xl border border-ctp-surface0 bg-ctp-surface0/30 p-4 hover:bg-ctp-surface0/70 hover:border-ctp-surface1 transition-all duration-300">
+                  class="motion-lift group grid place-items-center rounded-xl border border-ctp-surface0 bg-ctp-surface0/30 p-4 hover:bg-ctp-surface0/70 hover:border-ctp-surface1 transition-colors duration-300">
                   <svg class="h-6 w-6 opacity-90 group-hover:opacity-100 transition-opacity" viewBox="0 0 24 24"
                     fill="currentColor" aria-hidden="true">
                     <path
@@ -510,7 +421,7 @@
                   </svg>
                 </a>
                 <a href="https://t.me/katariya_nirmal" aria-label="Telegram"
-                  class="magnetic-hover group grid place-items-center rounded-xl border border-ctp-surface0 bg-ctp-surface0/30 p-4 hover:bg-ctp-surface0/70 hover:border-ctp-surface1 transition-all duration-300">
+                  class="motion-lift group grid place-items-center rounded-xl border border-ctp-surface0 bg-ctp-surface0/30 p-4 hover:bg-ctp-surface0/70 hover:border-ctp-surface1 transition-colors duration-300">
                   <svg class="h-6 w-6 opacity-90 group-hover:opacity-100 transition-opacity" viewBox="0 0 24 24"
                     fill="currentColor" aria-hidden="true">
                     <path
@@ -518,7 +429,7 @@
                   </svg>
                 </a>
                 <a href="https://medium.com/@katariya_nirmal" aria-label="Medium"
-                  class="magnetic-hover group grid place-items-center rounded-xl border border-ctp-surface0 bg-ctp-surface0/30 p-4 hover:bg-ctp-surface0/70 hover:border-ctp-surface1 transition-all duration-300">
+                  class="motion-lift group grid place-items-center rounded-xl border border-ctp-surface0 bg-ctp-surface0/30 p-4 hover:bg-ctp-surface0/70 hover:border-ctp-surface1 transition-colors duration-300">
                   <svg class="h-6 w-6 opacity-90 group-hover:opacity-100 transition-opacity" viewBox="0 0 24 24"
                     fill="currentColor" aria-hidden="true">
                     <path
@@ -541,11 +452,11 @@
     <div class="mx-auto w-[min(1100px,92vw)] text-ctp-subtext0"><small>© <span id="year"></span> Nirmal Katariya</small></div>
   </footer>
 
-  <div id="drawer" class="fixed inset-0 z-[60] hidden md:hidden" aria-hidden="true">
+  <div id="drawer" class="fixed inset-0 z-[60] hidden overscroll-contain md:hidden" aria-hidden="true">
     <div id="drawer-backdrop" class="absolute inset-0 bg-black/40 opacity-0 transition-opacity duration-300 ease-out">
     </div>
     <nav
-      class="absolute right-0 top-0 h-full w-80 translate-x-full bg-ctp-mantle/90 border-l border-ctp-surface0 p-7 backdrop-blur-14 transition-transform duration-300 ease-out">
+      class="absolute right-0 top-0 h-full w-80 translate-x-full overflow-y-auto overscroll-contain bg-ctp-mantle/90 border-l border-ctp-surface0 p-7 backdrop-blur-14 transition-transform duration-300 ease-out">
       <button id="drawer-close"
         class="mb-6 ml-auto inline-flex items-center gap-2 rounded-xl border border-ctp-surface0 bg-ctp-surface0/50 hover:bg-ctp-surface0 px-4 py-2 text-base font-semibold text-ctp-text">Close</button>
       <ul class="flex flex-col items-end gap-6">
@@ -568,9 +479,6 @@
         this.setupDrawer();
         this.setupScrollAnimations();
         this.setupScrollProgress();
-        this.setupTextAnimations();
-        this.setupParallax();
-        this.setupMagneticHover();
         this.setupYear();
       }
 
@@ -580,23 +488,43 @@
         const panel = drawer?.querySelector('nav');
         const backdrop = document.getElementById('drawer-backdrop');
         const closeBtn = document.getElementById('drawer-close');
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+        const transitionDuration = prefersReducedMotion.matches ? 0 : 300;
+        let closeTimer;
+        let openFrame;
 
         function openDrawer() {
+          if (!drawer || !panel || !backdrop) return;
+          window.clearTimeout(closeTimer);
+          window.cancelAnimationFrame(openFrame);
           drawer.classList.remove('hidden');
-          requestAnimationFrame(() => {
+          openFrame = requestAnimationFrame(() => {
             backdrop.classList.remove('opacity-0');
             panel.classList.remove('translate-x-full');
             drawer.setAttribute('aria-hidden', 'false');
             drawerBtn?.setAttribute('aria-expanded', 'true');
+            closeBtn?.focus({ preventScroll: true });
           });
         }
 
         function closeDrawer() {
+          if (!drawer || !panel || !backdrop) return;
+          window.cancelAnimationFrame(openFrame);
           backdrop.classList.add('opacity-0');
           panel.classList.add('translate-x-full');
           drawer.setAttribute('aria-hidden', 'true');
           drawerBtn?.setAttribute('aria-expanded', 'false');
-          setTimeout(() => drawer.classList.add('hidden'), 300);
+          window.clearTimeout(closeTimer);
+
+          if (transitionDuration === 0) {
+            drawer.classList.add('hidden');
+          } else {
+            closeTimer = window.setTimeout(() => {
+              drawer.classList.add('hidden');
+            }, transitionDuration);
+          }
+
+          drawerBtn?.focus({ preventScroll: true });
         }
 
         drawerBtn?.addEventListener('click', openDrawer);
@@ -606,29 +534,24 @@
       }
 
       setupScrollAnimations() {
-        const observers = [];
-
-        // Standard reveal animations
         const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .stagger');
         const io = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('in');
-              // Special handling for stagger elements
-              if (entry.target.classList.contains('stagger')) {
-                const children = entry.target.children;
-                Array.from(children).forEach((child, index) => {
-                  setTimeout(() => {
-                    child.classList.add('in');
-                  }, index * 100);
-                });
-              }
+            if (!entry.isIntersecting) return;
+
+            const target = entry.target;
+            if (target.classList.contains('stagger')) {
+              Array.from(target.children).forEach((child, index) => {
+                child.style.setProperty('--stagger-index', index);
+              });
             }
+
+            target.classList.add('in');
+            io.unobserve(target);
           });
         }, { threshold: 0.15, rootMargin: '50px' });
 
         revealElements.forEach(el => io.observe(el));
-        observers.push(io);
       }
 
       setupScrollProgress() {
@@ -636,85 +559,22 @@
 
         if (!progressBar) return;
 
+        let frameId = 0;
+
         const updateProgress = () => {
-          const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-          const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-          const progress = scrollTop / scrollHeight;
-          progressBar.style.transform = `scaleX(${progress})`;
+          if (frameId) return;
+
+          frameId = requestAnimationFrame(() => {
+            frameId = 0;
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const maxScroll = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
+            const progress = Math.min(Math.max(scrollTop / maxScroll, 0), 1);
+            progressBar.style.transform = `scaleX(${progress})`;
+          });
         };
 
         window.addEventListener('scroll', updateProgress, { passive: true });
         updateProgress();
-      }
-
-      setupTextAnimations() {
-        const splitTextElements = document.querySelectorAll('.split-text');
-
-        splitTextElements.forEach(element => {
-          const text = element.textContent;
-          element.innerHTML = '';
-
-          text.split('').forEach((char, index) => {
-            const span = document.createElement('span');
-            span.textContent = char === ' ' ? '\u00A0' : char;
-            span.className = 'char-reveal';
-            span.style.transitionDelay = `${index * 0.05}s`;
-            element.appendChild(span);
-          });
-        });
-
-        // Trigger text reveals when in viewport
-        const textObserver = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              const chars = entry.target.querySelectorAll('.char-reveal');
-              chars.forEach(char => char.classList.add('revealed'));
-            }
-          });
-        }, { threshold: 0.5 });
-
-        splitTextElements.forEach(el => textObserver.observe(el));
-      }
-
-      setupParallax() {
-        const parallaxElements = document.querySelectorAll('.parallax-slow, .parallax-fast');
-
-        const updateParallax = () => {
-          const scrollTop = window.pageYOffset;
-
-          parallaxElements.forEach(element => {
-            const speed = element.classList.contains('parallax-slow') ? 0.5 : 0.3;
-            const yPos = -(scrollTop * speed);
-            element.style.transform = `translateY(${yPos}px)`;
-          });
-        };
-
-        window.addEventListener('scroll', updateParallax, { passive: true });
-      }
-
-      setupMagneticHover() {
-        const magneticElements = document.querySelectorAll('.magnetic-hover');
-
-        magneticElements.forEach(element => {
-          element.addEventListener('mousemove', (e) => {
-            const rect = element.getBoundingClientRect();
-            const x = e.clientX - rect.left - rect.width / 2;
-            const y = e.clientY - rect.top - rect.height / 2;
-
-            const distance = Math.sqrt(x * x + y * y);
-            const maxDistance = 100;
-            const strength = Math.max(0, 1 - distance / maxDistance);
-
-            const moveX = (x / 10) * strength;
-            const moveY = (y / 10) * strength;
-
-            element.style.transform = `translate(${moveX}px, ${moveY}px)`;
-          });
-
-          element.addEventListener('mouseleave', () => {
-            element.style.transform = 'translate(0, 0)';
-          });
-        });
       }
 
       setupYear() {
@@ -725,20 +585,6 @@
     // Initialize animations when DOM is ready
     document.addEventListener('DOMContentLoaded', () => {
       new AnimationController();
-    });
-
-    // Smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
-        }
-      });
     });
   </script>
 </body>
