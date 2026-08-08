@@ -50,189 +50,106 @@
       background: color-mix(in oklab, #181825, transparent 55%) /* ctp-mantle */
     }
 
-    .reveal {
+    :where(section[id], #main) {
+      scroll-margin-top: 5rem
+    }
+
+    body {
+      overflow-x: clip
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 2px solid #89dceb;
+      outline-offset: 3px
+    }
+
+    .reveal,
+    .reveal-left,
+    .reveal-right,
+    .reveal-scale {
       opacity: 0;
-      filter: blur(6px);
-      transform: translateY(8px);
-      transition: opacity .8s cubic-bezier(.25, .46, .45, .94), filter .8s cubic-bezier(.25, .46, .45, .94), transform .8s cubic-bezier(.25, .46, .45, .94)
-    }
-
-    .reveal.in {
-      opacity: 1;
-      filter: blur(0);
-      transform: none
-    }
-
-    .reveal-left {
-      opacity: 0;
-      filter: blur(4px);
-      transform: translateX(-30px);
-      transition: opacity .8s cubic-bezier(.25, .46, .45, .94), filter .8s cubic-bezier(.25, .46, .45, .94), transform .8s cubic-bezier(.25, .46, .45, .94)
-    }
-
-    .reveal-left.in {
-      opacity: 1;
-      filter: blur(0);
-      transform: none
-    }
-
-    .reveal-right {
-      opacity: 0;
-      filter: blur(4px);
-      transform: translateX(30px);
-      transition: opacity .8s cubic-bezier(.25, .46, .45, .94), filter .8s cubic-bezier(.25, .46, .45, .94), transform .8s cubic-bezier(.25, .46, .45, .94)
-    }
-
-    .reveal-right.in {
-      opacity: 1;
-      filter: blur(0);
-      transform: none
+      transform: translateY(12px);
+      transition: opacity .45s ease-out, transform .45s cubic-bezier(.25, .46, .45, .94)
     }
 
     .reveal-scale {
-      opacity: 0;
-      filter: blur(4px);
-      transform: scale(0.9);
-      transition: opacity .8s cubic-bezier(.25, .46, .45, .94), filter .8s cubic-bezier(.25, .46, .45, .94), transform .8s cubic-bezier(.25, .46, .45, .94)
+      transform: translateY(12px) scale(.98)
     }
 
+    .reveal.in,
+    .reveal-left.in,
+    .reveal-right.in,
     .reveal-scale.in {
       opacity: 1;
-      filter: blur(0);
-      transform: scale(1)
+      transform: none
     }
 
     .stagger>* {
       opacity: 0;
-      filter: blur(4px);
-      transform: translateY(20px);
-      transition: opacity .6s cubic-bezier(.25, .46, .45, .94), filter .6s cubic-bezier(.25, .46, .45, .94), transform .6s cubic-bezier(.25, .46, .45, .94)
+      transform: translateY(12px);
+      transition: opacity .35s ease-out, transform .35s cubic-bezier(.25, .46, .45, .94);
+      transition-delay: 0ms
     }
 
     .stagger.in>* {
       opacity: 1;
-      filter: blur(0);
-      transform: none
-    }
-
-    .stagger.in>*:nth-child(1) {
-      transition-delay: 0.1s
-    }
-
-    .stagger.in>*:nth-child(2) {
-      transition-delay: 0.2s
-    }
-
-    .stagger.in>*:nth-child(3) {
-      transition-delay: 0.3s
-    }
-
-    .stagger.in>*:nth-child(4) {
-      transition-delay: 0.4s
-    }
-
-    .stagger.in>*:nth-child(5) {
-      transition-delay: 0.5s
-    }
-
-    .stagger.in>*:nth-child(6) {
-      transition-delay: 0.6s
-    }
-
-    .char-reveal {
-      display: inline-block;
-      opacity: 0;
-      transform: translateY(40px) rotateZ(-5deg);
-      transition: opacity .6s cubic-bezier(.25, .46, .45, .94), transform .6s cubic-bezier(.25, .46, .45, .94)
-    }
-
-    .char-reveal.revealed {
-      opacity: 1;
-      transform: translateY(0) rotateZ(0)
-    }
-
-    .parallax-slow {
-      will-change: transform
-    }
-
-    .parallax-fast {
-      will-change: transform
+      transform: none;
+      transition-delay: calc(var(--stagger-index, 0) * 60ms)
     }
 
     .blob {
-      will-change: transform, border-radius, opacity
+      will-change: transform
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .blob {
+        animation: float 24s ease-in-out infinite
+      }
+
+      .blob-sapphire {
+        animation-delay: -12s
+      }
     }
 
     @keyframes float {
-
       0%,
       100% {
-        transform: var(--base, translate3d(0, 0, 0)) translate3d(0, 0, 0) rotate(0deg) scale(1)
-      }
-
-      20% {
-        transform: var(--base, translate3d(0, 0, 0)) translate3d(24px, -20px, 0) rotate(4deg) scale(1.06)
+        transform: translate3d(0, 0, 0)
       }
 
       50% {
-        transform: var(--base, translate3d(0, 0, 0)) translate3d(-28px, 16px, 0) rotate(-3deg) scale(0.95)
-      }
-
-      80% {
-        transform: var(--base, translate3d(0, 0, 0)) translate3d(16px, 22px, 0) rotate(3deg) scale(1.02)
+        transform: translate3d(0, -12px, 0)
       }
     }
 
-    @keyframes morph {
-
-      0%,
-      100% {
-        border-radius: 50%
-      }
-
-      25% {
-        border-radius: 42% 58% 60% 40% / 45% 55% 45% 55%
-      }
-
-      50% {
-        border-radius: 60% 40% 45% 55% / 52% 48% 52% 48%
-      }
-
-      75% {
-        border-radius: 55% 45% 58% 42% / 40% 60% 40% 60%
-      }
+    .motion-lift {
+      transition: transform .2s ease-out, background-color .25s ease, border-color .25s ease, color .25s ease
     }
 
-    @keyframes pulseBlob {
-
-      0%,
-      100% {
-        opacity: .75
-      }
-
-      50% {
-        opacity: .95
-      }
-    }
-
-
-
-    .magnetic-hover {
-      transition: transform .3s cubic-bezier(.25, .46, .45, .94)
+    .motion-lift:hover,
+    .motion-lift:focus-visible {
+      transform: translateY(-2px)
     }
 
     @media (prefers-reduced-motion: reduce) {
-
-      .blob {
-        animation: none !important
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+        scroll-behavior: auto !important
       }
 
-      .char-reveal,
       .reveal,
       .reveal-left,
       .reveal-right,
-      .reveal-scale {
-        transition: none
+      .reveal-scale,
+      .stagger>* {
+        opacity: 1;
+        transform: none;
+        transition-delay: 0ms !important
       }
     }
   </style>
@@ -250,11 +167,11 @@
         class="md:hidden inline-flex items-center gap-2 rounded-lg border border-ctp-surface0 bg-ctp-surface0/50 px-3 py-2 backdrop-blur-14 text-ctp-text"
         aria-expanded="false" aria-controls="drawer" aria-label="Open menu">
         <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z" />
+          <path d="M3 4H21V6H3V4ZM3 11H21V13H3V11ZM3 18H21V20H3V18Z" />
         </svg>
         Menu
       </button>
-      <ul id="menu" class="hidden md:flex md:flex-row md:gap-3" aria-hidden="true">
+      <ul id="menu" class="hidden md:flex md:flex-row md:gap-3">
         <li><a class="rounded-lg px-3 py-2 text-ctp-subtext0 hover:text-ctp-text hover:bg-white/0 md:hover:bg-ctp-surface0/50 transition-colors" href="#about">About</a></li>
         <li><a class="rounded-lg px-3 py-2 text-ctp-subtext0 hover:text-ctp-text hover:bg-white/0 md:hover:bg-ctp-surface0/50 transition-colors" href="#experience">Experience</a></li>
         <li><a class="rounded-lg px-3 py-2 text-ctp-subtext0 hover:text-ctp-text hover:bg-white/0 md:hover:bg-ctp-surface0/50 transition-colors" href="#playground">Playground</a></li>
@@ -267,32 +184,26 @@
       <div class="mx-auto w-[min(900px,92vw)] py-10 sm:py-14">
         <div class="grid items-center gap-4 md:gap-6 text-left md:grid-cols-[1fr_auto]">
           <div class="reveal-left">
-            <h1 class="font-display text-5xl font-bold md:text-6xl split-text text-ctp-text">Hi, I'm Nirmal</h1>
+            <h1 class="font-display text-5xl font-bold md:text-6xl text-ctp-text">Hi, I'm Nirmal</h1>
             <p class="reveal mt-3 text-xl font-medium text-ctp-subtext1 md:text-2xl">Associate System Engineer at Goldman Sachs
               | IIT Jodhpur</p>
           </div>
-          <img src="IMG_20221203_110519~2.jpg" alt="Portrait of Nirmal"
+          <img src="IMG_20221203_110519~2.jpg" alt="Portrait of Nirmal" width="480" height="480" fetchpriority="high"
             class="reveal-right mx-auto mt-6 mb-2 h-56 w-56 rounded-full object-cover ring-2 ring-ctp-surface1 shadow-glass md:mt-0 md:mb-0 md:h-60 md:w-60 md:ml-6"
             loading="eager" />
         </div>
-        <div class="reveal-scale mx-auto flex justify-center mt-8 sm:mt-12 animate-bounce">
-          <svg class="h-5 w-5 sm:h-6 sm:w-6 text-ctp-overlay0" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+        <div class="reveal-scale mx-auto flex justify-center mt-8 sm:mt-12 motion-safe:animate-bounce">
+          <svg class="h-5 w-5 sm:h-6 sm:w-6 text-ctp-overlay0" viewBox="0 0 24 24" fill="currentColor"
             aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            <path d="M13.0001 16.1716L18.3641 10.8076L19.7783 12.2218L12.0001 20L4.22192 12.2218L5.63614 10.8076L11.0001 16.1716V4H13.0001V16.1716Z" />
           </svg>
         </div>
         <div class="pointer-events-none absolute inset-0 -z-10 mix-blend-screen">
           <div
-            class="blob parallax-slow absolute -left-16 -top-10 h-72 w-72 rounded-full bg-ctp-mauve/20 blur-3xl animate-[float_10s_ease-in-out_infinite,morph_22s_ease-in-out_infinite,pulseBlob_12s_ease-in-out_infinite]">
+            class="blob blob-mauve absolute -left-16 -top-10 h-72 w-72 rounded-full bg-ctp-mauve/20 blur-3xl">
           </div>
           <div
-            class="blob parallax-fast absolute -bottom-16 -right-20 h-80 w-80 rounded-full bg-ctp-sapphire/20 blur-3xl animate-[float_12s_ease-in-out_infinite,morph_26s_ease-in-out_infinite,pulseBlob_14s_ease-in-out_infinite]">
-          </div>
-          <div
-            class="blob parallax-slow absolute left-1/2 top-2/3 h-56 w-56 -translate-x-1/2 rounded-full bg-ctp-peach/20 blur-3xl animate-[float_14s_ease-in-out_infinite,morph_30s_ease-in-out_infinite,pulseBlob_16s_ease-in-out_infinite]"
-            style="--base: translateX(-50%)"></div>
-          <div
-            class="blob parallax-fast absolute left-1/4 bottom-1/4 h-40 w-40 rounded-full bg-ctp-pink/20 blur-3xl animate-[float_16s_ease-in-out_infinite,morph_28s_ease-in-out_infinite,pulseBlob_18s_ease-in-out_infinite]">
+            class="blob blob-sapphire absolute -bottom-16 -right-20 h-80 w-80 rounded-full bg-ctp-sapphire/20 blur-3xl">
           </div>
         </div>
         <div aria-hidden
@@ -302,40 +213,37 @@
     </section>
     <section id="about" class="relative pt-6 pb-6 sm:pt-10 sm:pb-8">
       <div class="mx-auto w-[min(900px,92vw)]">
-        <h2 class="reveal font-display text-4xl md:text-5xl split-text text-ctp-text">About</h2>
+        <h2 class="reveal font-display text-4xl md:text-5xl text-ctp-text">About</h2>
         <p class="reveal mt-4 text-lg md:text-xl text-ctp-subtext0 max-w-3xl">I’m a full-time Linux enjoyer and part-time
           computer archaeologist, forever digging up hardware memories like they’re rare loot. I love tinkering with
           PCs, breaking things “for science,” and customizing my setup until it’s 10% faster and 200% cooler. If it
           boots, beeps, or has a suspiciously loud fan, I’m emotionally attached already.</p>
         <div class="stagger mt-6 grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
           <div
-            class="magnetic-hover rounded-xl border border-ctp-surface0 bg-ctp-surface0/30 p-6 backdrop-blur hover:bg-ctp-surface0/70 hover:border-ctp-surface1 transition-all duration-300">
+            class="motion-lift rounded-xl border border-ctp-surface0 bg-ctp-surface0/30 p-6 backdrop-blur hover:bg-ctp-surface0/70 hover:border-ctp-surface1 transition-colors duration-300">
             <div class="rounded-lg bg-ctp-mauve/20 w-12 h-12 flex items-center justify-center mb-4">
-              <svg class="h-6 w-6 text-ctp-mauve" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+              <svg class="h-6 w-6 text-ctp-mauve" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M23 12L15.9289 19.0711L14.5147 17.6569L20.1716 12L14.5147 6.34317L15.9289 4.92896L23 12ZM3.82843 12L9.48528 17.6569L8.07107 19.0711L1 12L8.07107 4.92896L9.48528 6.34317L3.82843 12Z" />
               </svg>
             </div>
             <h3 class="font-semibold text-lg text-ctp-text">Expertise</h3>
             <p class="mt-2 text-sm text-ctp-subtext1">C++, FIX</p>
           </div>
           <div
-            class="magnetic-hover rounded-xl border border-ctp-surface0 bg-ctp-surface0/30 p-6 backdrop-blur hover:bg-ctp-surface0/70 hover:border-ctp-surface1 transition-all duration-300">
+            class="motion-lift rounded-xl border border-ctp-surface0 bg-ctp-surface0/30 p-6 backdrop-blur hover:bg-ctp-surface0/70 hover:border-ctp-surface1 transition-colors duration-300">
             <div class="rounded-lg bg-ctp-sapphire/20 w-12 h-12 flex items-center justify-center mb-4">
-              <svg class="h-6 w-6 text-ctp-sapphire" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M21 13.255A7.977 7.977 0 0112 21c-4.406 0-8-3.594-8-8a8 8 0 018-8c4.42 0 7.775 3.58 8 8.255z" />
+              <svg class="h-6 w-6 text-ctp-sapphire" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M7 5V2C7 1.44772 7.44772 1 8 1H16C16.5523 1 17 1.44772 17 2V5H21C21.5523 5 22 5.44772 22 6V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V6C2 5.44772 2.44772 5 3 5H7ZM4 16V19H20V16H4ZM4 14H20V7H4V14ZM9 3V5H15V3H9ZM11 11H13V13H11V11Z" />
               </svg>
             </div>
             <h3 class="font-semibold text-lg text-ctp-text">Currently</h3>
             <p class="mt-2 text-sm text-ctp-subtext1">Supporting STP flows and trade booking at their front desk</p>
           </div>
           <div
-            class="magnetic-hover rounded-xl border border-ctp-surface0 bg-ctp-surface0/30 p-6 backdrop-blur hover:bg-ctp-surface0/70 hover:border-ctp-surface1 transition-all duration-300">
+            class="motion-lift rounded-xl border border-ctp-surface0 bg-ctp-surface0/30 p-6 backdrop-blur hover:bg-ctp-surface0/70 hover:border-ctp-surface1 transition-colors duration-300">
             <div class="rounded-lg bg-ctp-peach/20 w-12 h-12 flex items-center justify-center mb-4">
-              <svg class="h-6 w-6 text-ctp-peach" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+              <svg class="h-6 w-6 text-ctp-peach" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M13 21V23H11V21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3H9C10.1947 3 11.2671 3.52375 12 4.35418C12.7329 3.52375 13.8053 3 15 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H13ZM20 19V5H15C13.8954 5 13 5.89543 13 7V19H20ZM11 19V7C11 5.89543 10.1046 5 9 5H4V19H11Z" />
               </svg>
             </div>
             <h3 class="font-semibold text-lg text-ctp-text">Education</h3>
@@ -347,14 +255,14 @@
 
     <section id="experience" class="relative py-6 sm:py-10">
       <div class="mx-auto w-[min(900px,92vw)]">
-        <h2 class="reveal font-display text-4xl md:text-5xl split-text text-ctp-text">Experience</h2>
+        <h2 class="reveal font-display text-4xl md:text-5xl text-ctp-text">Experience</h2>
         <div class="mt-6 space-y-4">
           <div
-            class="reveal-left magnetic-hover relative rounded-xl border border-ctp-surface0 bg-ctp-surface0/30 p-6 backdrop-blur hover:bg-ctp-surface0/70 hover:border-ctp-surface1 transition-all duration-300">
+            class="reveal-left motion-lift relative rounded-xl border border-ctp-surface0 bg-ctp-surface0/30 p-6 backdrop-blur hover:bg-ctp-surface0/70 hover:border-ctp-surface1 transition-colors duration-300">
             <div class="relative flex items-start justify-between gap-4">
               <div class="flex-1">
                 <div class="flex items-center gap-3 mb-2">
-                  <div class="w-3 h-3 bg-ctp-mauve rounded-full animate-pulse"></div>
+                  <div class="w-3 h-3 bg-ctp-mauve rounded-full motion-safe:animate-pulse"></div>
                   <h3 class="text-xl md:text-2xl font-semibold text-ctp-text">Associate System Engineer</h3>
                 </div>
                 <p class="text-ctp-mauve font-medium">Goldman Sachs</p>
@@ -384,7 +292,7 @@
           </div>
 
           <div
-            class="reveal-left magnetic-hover relative rounded-xl border border-ctp-surface0 bg-ctp-surface0/30 p-6 backdrop-blur hover:bg-ctp-surface0/70 hover:border-ctp-surface1 transition-all duration-300"
+            class="reveal-left motion-lift relative rounded-xl border border-ctp-surface0 bg-ctp-surface0/30 p-6 backdrop-blur hover:bg-ctp-surface0/70 hover:border-ctp-surface1 transition-colors duration-300"
             style="transition-delay: 0.2s">
             <div class="relative flex items-start justify-between gap-4">
               <div class="flex-1">
@@ -425,19 +333,19 @@
 
     <section id="playground" class="relative py-6 sm:py-10">
       <div class="mx-auto w-[min(900px,92vw)]">
-        <h2 class="reveal font-display text-4xl md:text-5xl split-text text-ctp-text">Playground</h2>
+        <h2 class="reveal font-display text-4xl md:text-5xl text-ctp-text">Playground</h2>
         <div class="stagger mt-6 grid sm:grid-cols-2 gap-4">
-          <a href="https://zsh.nirmalkatariya.com/" target="_blank" class="reveal-left group block p-5 rounded-xl border border-ctp-surface0 bg-ctp-surface0/10 backdrop-blur hover:bg-ctp-surface0/40 hover:border-ctp-surface1 transition-all duration-300">
+          <a href="https://zsh.nirmalkatariya.com/" target="_blank" class="reveal-left group block p-5 rounded-xl border border-ctp-surface0 bg-ctp-surface0/10 backdrop-blur hover:bg-ctp-surface0/40 hover:border-ctp-surface1 transition-colors duration-300">
             <div class="flex items-center justify-between mb-2">
               <h3 class="font-semibold text-lg text-ctp-text group-hover:text-ctp-mauve transition-colors">Nirmal's Shell</h3>
-              <svg class="h-5 w-5 text-ctp-subtext0 group-hover:text-ctp-mauve transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              <svg class="h-5 w-5 text-ctp-subtext0 group-hover:text-ctp-mauve transition-colors" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M10 6V8H5V19H16V14H18V20C18 20.5523 17.5523 21 17 21H4C3.44772 21 3 20.5523 3 20V7C3 6.44772 3.44772 6 4 6H10ZM21 3V11H19L18.9999 6.413L11.2071 14.2071L9.79289 12.7929L17.5849 5H13V3H21Z" /></svg>
             </div>
             <p class="text-sm text-ctp-subtext1">A living guide to my aliases, functions, and workflows.</p>
           </a>
-          <a href="https://retro.nirmalkatariya.com/" target="_blank" class="reveal-right group block p-5 rounded-xl border border-ctp-surface0 bg-ctp-surface0/10 backdrop-blur hover:bg-ctp-surface0/40 hover:border-ctp-surface1 transition-all duration-300">
+          <a href="https://retro.nirmalkatariya.com/" target="_blank" class="reveal-right group block p-5 rounded-xl border border-ctp-surface0 bg-ctp-surface0/10 backdrop-blur hover:bg-ctp-surface0/40 hover:border-ctp-surface1 transition-colors duration-300">
             <div class="flex items-center justify-between mb-2">
               <h3 class="font-semibold text-lg text-ctp-text group-hover:text-ctp-sapphire transition-colors">Retro Terminal Port</h3>
-              <svg class="h-5 w-5 text-ctp-subtext0 group-hover:text-ctp-sapphire transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              <svg class="h-5 w-5 text-ctp-subtext0 group-hover:text-ctp-sapphire transition-colors" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M10 6V8H5V19H16V14H18V20C18 20.5523 17.5523 21 17 21H4C3.44772 21 3 20.5523 3 20V7C3 6.44772 3.44772 6 4 6H10ZM21 3V11H19L18.9999 6.413L11.2071 14.2071L9.79289 12.7929L17.5849 5H13V3H21Z" /></svg>
             </div>
             <p class="text-sm text-ctp-subtext1">A retro console-themed port for a given website.</p>
           </a>
@@ -447,7 +355,7 @@
 
     <section id="contact" class="py-6 sm:py-10">
       <div class="mx-auto w-[min(900px,92vw)]">
-        <h2 class="reveal font-display text-4xl md:text-5xl split-text text-ctp-text">Contact</h2>
+        <h2 class="reveal font-display text-4xl md:text-5xl text-ctp-text">Contact</h2>
         <p class="reveal mt-4 text-lg text-ctp-subtext1">Let's connect and build something amazing together</p>
 
         <div class="stagger mt-6">
@@ -456,12 +364,11 @@
               <h3 class="text-2xl font-semibold mb-6 text-ctp-text">Get in Touch</h3>
               <div class="space-y-4">
                 <a href="mailto:katariya.1@iitj.ac.in"
-                  class="magnetic-hover flex items-center gap-4 p-4 rounded-xl border border-ctp-surface0 bg-ctp-surface0/30 backdrop-blur hover:bg-ctp-surface0/70 hover:border-ctp-surface1 transition-all duration-300">
+                  class="motion-lift flex items-center gap-4 p-4 rounded-xl border border-ctp-surface0 bg-ctp-surface0/30 backdrop-blur hover:bg-ctp-surface0/70 hover:border-ctp-surface1 transition-colors duration-300">
                   <div
                     class="w-12 h-12 rounded-lg bg-ctp-sapphire/20 flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <svg class="h-6 w-6 text-ctp-sapphire" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    <svg class="h-6 w-6 text-ctp-sapphire" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM20 7.23792L12.0718 14.338L4 7.21594V19H20V7.23792ZM4.51146 5L12.0619 11.662L19.501 5H4.51146Z" />
                     </svg>
                   </div>
                   <div>
@@ -478,51 +385,45 @@
               <h3 class="text-2xl font-semibold mb-6 text-ctp-text">Connect</h3>
               <div class="grid grid-cols-3 gap-3">
                 <a href="https://github.com/thundernirmal" aria-label="GitHub"
-                  class="magnetic-hover group grid place-items-center rounded-xl border border-ctp-surface0 bg-ctp-surface0/30 p-4 hover:bg-ctp-surface0/70 hover:border-ctp-surface1 transition-all duration-300">
+                  class="motion-lift group grid place-items-center rounded-xl border border-ctp-surface0 bg-ctp-surface0/30 p-4 hover:bg-ctp-surface0/70 hover:border-ctp-surface1 transition-colors duration-300">
                   <svg class="h-6 w-6 opacity-90 group-hover:opacity-100 transition-opacity" viewBox="0 0 24 24"
                     fill="currentColor" aria-hidden="true">
-                    <path
-                      d="M12 .5A11.5 11.5 0 0 0 .5 12.3c0 5.2 3.4 9.6 8.2 11.2.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.4-4-1.4-.5-1.2-1.2-1.5-1.2-1.5-1-.7.1-.7.1-.7 1.1.1 1.7 1.1 1.7 1.1 1 1.8 2.6 1.3 3.2 1 .1-.7.4-1.3.7-1.6-2.6-.3-5.2-1.4-5.2-6A4.7 4.7 0 0 1 6.3 9c-.1-.3-.5-1.6.1-3.3 0 0 1-.3 3.3 1.2a11.2 11.2 0 0 1 6 0C18 5.4 19 5.7 19 5.7c.6 1.7.2 3 .1 3.3a4.7 4.7 0 0 1 1.2 3.2c0 4.6-2.7 5.6-5.3 5.9.4.3.8 1 .8 2.2v3.2c0 .3.2.7.8.6a11.7 11.7 0 0 0 8.2-11.2A11.5 11.5 0 0 0 12 .5Z" />
+                    <path d="M5.88401 18.6533C5.58404 18.4526 5.32587 18.1975 5.0239 17.8369C4.91473 17.7065 4.47283 17.1524 4.55811 17.2583C4.09533 16.6833 3.80296 16.417 3.50156 16.3089C2.9817 16.1225 2.7114 15.5499 2.89784 15.0301C3.08428 14.5102 3.65685 14.2399 4.17672 14.4263C4.92936 14.6963 5.43847 15.1611 6.12425 16.0143C6.03025 15.8974 6.46364 16.441 6.55731 16.5529C6.74784 16.7804 6.88732 16.9182 6.99629 16.9911C7.20118 17.1283 7.58451 17.1874 8.14709 17.1311C8.17065 16.7489 8.24136 16.3783 8.34919 16.0358C5.38097 15.3104 3.70116 13.3952 3.70116 9.63971C3.70116 8.40085 4.0704 7.28393 4.75917 6.3478C4.5415 5.45392 4.57433 4.37284 5.06092 3.15636C5.1725 2.87739 5.40361 2.66338 5.69031 2.57352C5.77242 2.54973 5.81791 2.53915 5.89878 2.52673C6.70167 2.40343 7.83573 2.69705 9.31449 3.62336C10.181 3.41879 11.0885 3.315 12.0012 3.315C12.9129 3.315 13.8196 3.4186 14.6854 3.62277C16.1619 2.69 17.2986 2.39649 18.1072 2.52651C18.1919 2.54013 18.2645 2.55783 18.3249 2.57766C18.6059 2.66991 18.8316 2.88179 18.9414 3.15636C19.4279 4.37256 19.4608 5.45344 19.2433 6.3472C19.9342 7.28337 20.3012 8.39208 20.3012 9.63971C20.3012 13.3968 18.627 15.3048 15.6588 16.032C15.7837 16.447 15.8496 16.9105 15.8496 17.4121C15.8496 18.0765 15.8471 18.711 15.8424 19.4225C15.8412 19.6127 15.8397 19.8159 15.8375 20.1281C16.2129 20.2109 16.5229 20.5077 16.6031 20.9089C16.7114 21.4504 16.3602 21.9773 15.8186 22.0856C14.6794 22.3134 13.8353 21.5538 13.8353 20.5611C13.8353 20.4708 13.836 20.3417 13.8375 20.1145C13.8398 19.8015 13.8412 19.599 13.8425 19.4094C13.8471 18.7019 13.8496 18.0716 13.8496 17.4121C13.8496 16.7148 13.6664 16.2602 13.4237 16.051C12.7627 15.4812 13.0977 14.3973 13.965 14.2999C16.9314 13.9666 18.3012 12.8177 18.3012 9.63971C18.3012 8.68508 17.9893 7.89571 17.3881 7.23559C17.1301 6.95233 17.0567 6.54659 17.199 6.19087C17.3647 5.77663 17.4354 5.23384 17.2941 4.57702L17.2847 4.57968C16.7928 4.71886 16.1744 5.0198 15.4261 5.5285C15.182 5.69438 14.8772 5.74401 14.5932 5.66413C13.7729 5.43343 12.8913 5.315 12.0012 5.315C11.111 5.315 10.2294 5.43343 9.40916 5.66413C9.12662 5.74359 8.82344 5.69492 8.57997 5.53101C7.8274 5.02439 7.2056 4.72379 6.71079 4.58376C6.56735 5.23696 6.63814 5.77782 6.80336 6.19087C6.94565 6.54659 6.87219 6.95233 6.61423 7.23559C6.01715 7.8912 5.70116 8.69376 5.70116 9.63971C5.70116 12.8116 7.07225 13.9683 10.023 14.2999C10.8883 14.3971 11.2246 15.4769 10.5675 16.0482C10.3751 16.2156 10.1384 16.7802 10.1384 17.4121V20.5611C10.1384 21.5474 9.30356 22.2869 8.17878 22.09C7.63476 21.9948 7.27093 21.4766 7.36613 20.9326C7.43827 20.5204 7.75331 20.2116 8.13841 20.1276V19.1381C7.22829 19.1994 6.47656 19.0498 5.88401 18.6533Z" />
                   </svg>
                 </a>
                 <a href="https://www.linkedin.com/in/nirmal-katariya/" aria-label="LinkedIn"
-                  class="magnetic-hover group grid place-items-center rounded-xl border border-ctp-surface0 bg-ctp-surface0/30 p-4 hover:bg-ctp-surface0/70 hover:border-ctp-surface1 transition-all duration-300">
+                  class="motion-lift group grid place-items-center rounded-xl border border-ctp-surface0 bg-ctp-surface0/30 p-4 hover:bg-ctp-surface0/70 hover:border-ctp-surface1 transition-colors duration-300">
                   <svg class="h-6 w-6 opacity-90 group-hover:opacity-100 transition-opacity" viewBox="0 0 24 24"
                     fill="currentColor" aria-hidden="true">
-                    <path
-                      d="M4.98 3.5a2.5 2.5 0 1 0 .02 5 2.5 2.5 0 0 0-.02-5ZM3 8.98h3.96V21H3zM9.5 8.98H13v1.64h.05c.48-.9 1.66-1.84 3.42-1.84 3.66 0 4.33 2.4 4.33 5.52V21h-3.96v-4.92c0-1.17-.02-2.68-1.64-2.68-1.65 0-1.9 1.29-1.9 2.6V21H9.5z" />
+                    <path d="M12.001 9.55005C12.9181 8.61327 14.1121 8 15.501 8C18.5385 8 21.001 10.4624 21.001 13.5V21H19.001V13.5C19.001 11.567 17.434 10 15.501 10C13.568 10 12.001 11.567 12.001 13.5V21H10.001V8.5H12.001V9.55005ZM5.00098 6.5C4.17255 6.5 3.50098 5.82843 3.50098 5C3.50098 4.17157 4.17255 3.5 5.00098 3.5C5.8294 3.5 6.50098 4.17157 6.50098 5C6.50098 5.82843 5.8294 6.5 5.00098 6.5ZM4.00098 8.5H6.00098V21H4.00098V8.5Z" />
                   </svg>
                 </a>
                 <a href="https://x.com/Nirmal_310" aria-label="Twitter"
-                  class="magnetic-hover group grid place-items-center rounded-xl border border-ctp-surface0 bg-ctp-surface0/30 p-4 hover:bg-ctp-surface0/70 hover:border-ctp-surface1 transition-all duration-300">
+                  class="motion-lift group grid place-items-center rounded-xl border border-ctp-surface0 bg-ctp-surface0/30 p-4 hover:bg-ctp-surface0/70 hover:border-ctp-surface1 transition-colors duration-300">
                   <svg class="h-6 w-6 opacity-90 group-hover:opacity-100 transition-opacity" viewBox="0 0 24 24"
                     fill="currentColor" aria-hidden="true">
-                    <path
-                      d="M18.244 2h3.308l-7.227 8.26L22 22h-6.59l-5.159-6.744L4.23 22H.92l7.73-8.836L2 2h6.727l4.65 6.18zm-1.158 18h1.833L7.01 3.97H5.06z" />
+                    <path d="M10.4883 14.651L15.25 21H22.25L14.3917 10.5223L20.9308 3H18.2808L13.1643 8.88578L8.75 3H1.75L9.26086 13.0145L2.31915 21H4.96917L10.4883 14.651ZM16.25 19L5.75 5H7.75L18.25 19H16.25Z" />
                   </svg>
                 </a>
                 <a href="https://instagram.com/katariya_nirmal_3" aria-label="Instagram"
-                  class="magnetic-hover group grid place-items-center rounded-xl border border-ctp-surface0 bg-ctp-surface0/30 p-4 hover:bg-ctp-surface0/70 hover:border-ctp-surface1 transition-all duration-300">
+                  class="motion-lift group grid place-items-center rounded-xl border border-ctp-surface0 bg-ctp-surface0/30 p-4 hover:bg-ctp-surface0/70 hover:border-ctp-surface1 transition-colors duration-300">
                   <svg class="h-6 w-6 opacity-90 group-hover:opacity-100 transition-opacity" viewBox="0 0 24 24"
                     fill="currentColor" aria-hidden="true">
-                    <path
-                      d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3.5a5.5 5.5 0 1 1 0 11 5.5 5.5 0 0 1 0-11Zm0 2a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Zm5.25-3a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5Z" />
+                    <path d="M12.001 9C10.3436 9 9.00098 10.3431 9.00098 12C9.00098 13.6573 10.3441 15 12.001 15C13.6583 15 15.001 13.6569 15.001 12C15.001 10.3427 13.6579 9 12.001 9ZM12.001 7C14.7614 7 17.001 9.2371 17.001 12C17.001 14.7605 14.7639 17 12.001 17C9.24051 17 7.00098 14.7629 7.00098 12C7.00098 9.23953 9.23808 7 12.001 7ZM18.501 6.74915C18.501 7.43926 17.9402 7.99917 17.251 7.99917C16.5609 7.99917 16.001 7.4384 16.001 6.74915C16.001 6.0599 16.5617 5.5 17.251 5.5C17.9393 5.49913 18.501 6.0599 18.501 6.74915ZM12.001 4C9.5265 4 9.12318 4.00655 7.97227 4.0578C7.18815 4.09461 6.66253 4.20007 6.17416 4.38967C5.74016 4.55799 5.42709 4.75898 5.09352 5.09255C4.75867 5.4274 4.55804 5.73963 4.3904 6.17383C4.20036 6.66332 4.09493 7.18811 4.05878 7.97115C4.00703 9.0752 4.00098 9.46105 4.00098 12C4.00098 14.4745 4.00753 14.8778 4.05877 16.0286C4.0956 16.8124 4.2012 17.3388 4.39034 17.826C4.5591 18.2606 4.7605 18.5744 5.09246 18.9064C5.42863 19.2421 5.74179 19.4434 6.17187 19.6094C6.66619 19.8005 7.19148 19.9061 7.97212 19.9422C9.07618 19.9939 9.46203 20 12.001 20C14.4755 20 14.8788 19.9934 16.0296 19.9422C16.8117 19.9055 17.3385 19.7996 17.827 19.6106C18.2604 19.4423 18.5752 19.2402 18.9074 18.9085C19.2436 18.5718 19.4445 18.2594 19.6107 17.8283C19.8013 17.3358 19.9071 16.8098 19.9432 16.0289C19.9949 14.9248 20.001 14.5389 20.001 12C20.001 9.52552 19.9944 9.12221 19.9432 7.97137C19.9064 7.18906 19.8005 6.66149 19.6113 6.17318C19.4434 5.74038 19.2417 5.42635 18.9084 5.09255C18.573 4.75715 18.2616 4.55693 17.8271 4.38942C17.338 4.19954 16.8124 4.09396 16.0298 4.05781C14.9258 4.00605 14.5399 4 12.001 4ZM12.001 2C14.7176 2 15.0568 2.01 16.1235 2.06C17.1876 2.10917 17.9135 2.2775 18.551 2.525C19.2101 2.77917 19.7668 3.1225 20.3226 3.67833C20.8776 4.23417 21.221 4.7925 21.476 5.45C21.7226 6.08667 21.891 6.81333 21.941 7.8775C21.9885 8.94417 22.001 9.28333 22.001 12C22.001 14.7167 21.991 15.0558 21.941 16.1225C21.8918 17.1867 21.7226 17.9125 21.476 18.55C21.2218 19.2092 20.8776 19.7658 20.3226 20.3217C19.7668 20.8767 19.2076 21.22 18.551 21.475C17.9135 21.7217 17.1876 21.89 16.1235 21.94C15.0568 21.9875 14.7176 22 12.001 22C9.28431 22 8.94514 21.99 7.87848 21.94C6.81431 21.8908 6.08931 21.7217 5.45098 21.475C4.79264 21.2208 4.23514 20.8767 3.67931 20.3217C3.12348 19.7658 2.78098 19.2067 2.52598 18.55C2.27848 17.9125 2.11098 17.1867 2.06098 16.1225C2.01348 15.0558 2.00098 14.7167 2.00098 12C2.00098 9.28333 2.01098 8.94417 2.06098 7.8775C2.11014 6.8125 2.27848 6.0875 2.52598 5.45C2.78014 4.79167 3.12348 4.23417 3.67931 3.67833C4.23514 3.1225 4.79348 2.78 5.45098 2.525C6.08848 2.2775 6.81348 2.11 7.87848 2.06C8.94514 2.0125 9.28431 2 12.001 2Z" />
                   </svg>
                 </a>
                 <a href="https://t.me/katariya_nirmal" aria-label="Telegram"
-                  class="magnetic-hover group grid place-items-center rounded-xl border border-ctp-surface0 bg-ctp-surface0/30 p-4 hover:bg-ctp-surface0/70 hover:border-ctp-surface1 transition-all duration-300">
+                  class="motion-lift group grid place-items-center rounded-xl border border-ctp-surface0 bg-ctp-surface0/30 p-4 hover:bg-ctp-surface0/70 hover:border-ctp-surface1 transition-colors duration-300">
                   <svg class="h-6 w-6 opacity-90 group-hover:opacity-100 transition-opacity" viewBox="0 0 24 24"
                     fill="currentColor" aria-hidden="true">
-                    <path
-                      d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.941z" />
+                    <path d="M20 12C20 16.4183 16.4183 20 12 20C7.58172 20 4 16.4183 4 12C4 7.58172 7.58172 4 12 4C16.4183 4 20 7.58172 20 12ZM12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22ZM12.3584 9.38246C11.3857 9.78702 9.4418 10.6244 6.5266 11.8945C6.05321 12.0827 5.80524 12.2669 5.78266 12.4469C5.74451 12.7513 6.12561 12.8711 6.64458 13.0343C6.71517 13.0565 6.78832 13.0795 6.8633 13.1039C7.37388 13.2698 8.06071 13.464 8.41776 13.4717C8.74164 13.4787 9.10313 13.3452 9.50222 13.0711C12.226 11.2325 13.632 10.3032 13.7203 10.2832C13.7826 10.269 13.8689 10.2513 13.9273 10.3032C13.9858 10.3552 13.98 10.4536 13.9739 10.48C13.9361 10.641 12.4401 12.0318 11.6659 12.7515C11.4351 12.9661 11.2101 13.1853 10.9833 13.4039C10.509 13.8611 10.1533 14.204 11.003 14.764C11.8644 15.3317 12.7323 15.8982 13.5724 16.4971C13.9867 16.7925 14.359 17.0579 14.8188 17.0156C15.0861 16.991 15.3621 16.7397 15.5022 15.9903C15.8335 14.2193 16.4847 10.3821 16.6352 8.80083C16.6484 8.6623 16.6318 8.485 16.6185 8.40717C16.6052 8.32934 16.5773 8.21844 16.4762 8.13635C16.3563 8.03913 16.1714 8.01863 16.0887 8.02009C15.7125 8.02672 15.1355 8.22737 12.3584 9.38246Z" />
                   </svg>
                 </a>
                 <a href="https://medium.com/@katariya_nirmal" aria-label="Medium"
-                  class="magnetic-hover group grid place-items-center rounded-xl border border-ctp-surface0 bg-ctp-surface0/30 p-4 hover:bg-ctp-surface0/70 hover:border-ctp-surface1 transition-all duration-300">
+                  class="motion-lift group grid place-items-center rounded-xl border border-ctp-surface0 bg-ctp-surface0/30 p-4 hover:bg-ctp-surface0/70 hover:border-ctp-surface1 transition-colors duration-300">
                   <svg class="h-6 w-6 opacity-90 group-hover:opacity-100 transition-opacity" viewBox="0 0 24 24"
                     fill="currentColor" aria-hidden="true">
-                    <path
-                      d="M0 0v24h24V0H0zm19.188 17.492H16.8v-6.39c0-1.528-.052-3.495-2.128-3.495-2.13 0-2.456 1.665-2.456 3.38v6.505H9.844V5.907h2.465v1.8h.034c.343-.65 1.182-1.335 2.434-1.335 2.603 0 3.083 1.714 3.083 3.94l-.022 7.081z" />
+                    <path d="M6.15791 4H17.8422C19.034 4 20.0001 4.96612 20.0001 6.15789V9.61314C19.8226 9.65789 19.653 9.71748 19.5077 9.79063C19.1077 9.97583 18.7549 10.2528 18.4614 10.6162C17.9888 11.2018 17.7026 11.9931 17.633 12.8824C17.6181 13.059 17.6132 13.2366 17.6164 13.4138C17.6574 15.1766 18.4959 16.6295 20.0001 16.9647V17.8421C20.0001 19.0339 19.034 20 17.8422 20H6.15791C4.96613 20 4.00001 19.0339 4.00001 17.8421V6.15789C4.00001 4.96612 4.96613 4 6.15791 4ZM21.0001 6.15789C21.0001 4.41384 19.5863 3 17.8422 3H6.15791C4.41385 3 3 4.41384 3 6.15789V17.8421C3 19.5862 4.41385 21 6.15791 21H17.8422C19.5863 21 21.0001 19.5862 21.0001 17.8421V6.15789ZM20.0001 10.298V12.2813H19.3839C19.4227 11.4139 19.6365 10.7014 20.0001 10.298ZM20.0001 12.6621V14.7252C19.5588 14.2117 19.3013 13.4758 19.3474 12.6621H20.0001ZM17.6974 7.30004L17.7116 7.29693V7.18701H14.8128L12.1212 13.5132L9.42956 7.18701H6.30575V7.29693L6.31977 7.30004C6.84888 7.41946 7.11751 7.59757 7.11751 8.23987V15.7595C7.11751 16.4018 6.84784 16.5799 6.31874 16.6993L6.30471 16.7024V16.8127H8.42412V16.7028L8.41011 16.6996C7.88098 16.5802 7.61235 16.4021 7.61235 15.7598V8.67605L11.07 16.8127H11.2661L14.8246 8.44914V15.9455C14.7792 16.4528 14.513 16.6095 14.0339 16.7176L14.0197 16.7209V16.83H17.7116V16.7209L17.6974 16.7176C17.2178 16.6095 16.9452 16.4528 16.8999 15.9455L16.8974 8.23987H16.8999C16.8999 7.59757 17.1685 7.41946 17.6974 7.30004Z" />
                   </svg>
                 </a>
               </div>
@@ -541,11 +442,11 @@
     <div class="mx-auto w-[min(1100px,92vw)] text-ctp-subtext0"><small>© <span id="year"></span> Nirmal Katariya</small></div>
   </footer>
 
-  <div id="drawer" class="fixed inset-0 z-[60] hidden md:hidden" aria-hidden="true">
+  <div id="drawer" class="fixed inset-0 z-[60] hidden overscroll-contain md:hidden" aria-hidden="true">
     <div id="drawer-backdrop" class="absolute inset-0 bg-black/40 opacity-0 transition-opacity duration-300 ease-out">
     </div>
     <nav
-      class="absolute right-0 top-0 h-full w-80 translate-x-full bg-ctp-mantle/90 border-l border-ctp-surface0 p-7 backdrop-blur-14 transition-transform duration-300 ease-out">
+      class="absolute right-0 top-0 h-full w-80 translate-x-full overflow-y-auto overscroll-contain bg-ctp-mantle/90 border-l border-ctp-surface0 p-7 backdrop-blur-14 transition-transform duration-300 ease-out">
       <button id="drawer-close"
         class="mb-6 ml-auto inline-flex items-center gap-2 rounded-xl border border-ctp-surface0 bg-ctp-surface0/50 hover:bg-ctp-surface0 px-4 py-2 text-base font-semibold text-ctp-text">Close</button>
       <ul class="flex flex-col items-end gap-6">
@@ -568,9 +469,6 @@
         this.setupDrawer();
         this.setupScrollAnimations();
         this.setupScrollProgress();
-        this.setupTextAnimations();
-        this.setupParallax();
-        this.setupMagneticHover();
         this.setupYear();
       }
 
@@ -580,23 +478,43 @@
         const panel = drawer?.querySelector('nav');
         const backdrop = document.getElementById('drawer-backdrop');
         const closeBtn = document.getElementById('drawer-close');
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+        const transitionDuration = prefersReducedMotion.matches ? 0 : 300;
+        let closeTimer;
+        let openFrame;
 
         function openDrawer() {
+          if (!drawer || !panel || !backdrop) return;
+          window.clearTimeout(closeTimer);
+          window.cancelAnimationFrame(openFrame);
           drawer.classList.remove('hidden');
-          requestAnimationFrame(() => {
+          openFrame = requestAnimationFrame(() => {
             backdrop.classList.remove('opacity-0');
             panel.classList.remove('translate-x-full');
             drawer.setAttribute('aria-hidden', 'false');
             drawerBtn?.setAttribute('aria-expanded', 'true');
+            closeBtn?.focus({ preventScroll: true });
           });
         }
 
         function closeDrawer() {
+          if (!drawer || !panel || !backdrop) return;
+          window.cancelAnimationFrame(openFrame);
           backdrop.classList.add('opacity-0');
           panel.classList.add('translate-x-full');
           drawer.setAttribute('aria-hidden', 'true');
           drawerBtn?.setAttribute('aria-expanded', 'false');
-          setTimeout(() => drawer.classList.add('hidden'), 300);
+          window.clearTimeout(closeTimer);
+
+          if (transitionDuration === 0) {
+            drawer.classList.add('hidden');
+          } else {
+            closeTimer = window.setTimeout(() => {
+              drawer.classList.add('hidden');
+            }, transitionDuration);
+          }
+
+          drawerBtn?.focus({ preventScroll: true });
         }
 
         drawerBtn?.addEventListener('click', openDrawer);
@@ -606,29 +524,24 @@
       }
 
       setupScrollAnimations() {
-        const observers = [];
-
-        // Standard reveal animations
         const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .stagger');
         const io = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('in');
-              // Special handling for stagger elements
-              if (entry.target.classList.contains('stagger')) {
-                const children = entry.target.children;
-                Array.from(children).forEach((child, index) => {
-                  setTimeout(() => {
-                    child.classList.add('in');
-                  }, index * 100);
-                });
-              }
+            if (!entry.isIntersecting) return;
+
+            const target = entry.target;
+            if (target.classList.contains('stagger')) {
+              Array.from(target.children).forEach((child, index) => {
+                child.style.setProperty('--stagger-index', index);
+              });
             }
+
+            target.classList.add('in');
+            io.unobserve(target);
           });
         }, { threshold: 0.15, rootMargin: '50px' });
 
         revealElements.forEach(el => io.observe(el));
-        observers.push(io);
       }
 
       setupScrollProgress() {
@@ -636,85 +549,22 @@
 
         if (!progressBar) return;
 
+        let frameId = 0;
+
         const updateProgress = () => {
-          const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-          const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-          const progress = scrollTop / scrollHeight;
-          progressBar.style.transform = `scaleX(${progress})`;
+          if (frameId) return;
+
+          frameId = requestAnimationFrame(() => {
+            frameId = 0;
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const maxScroll = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
+            const progress = Math.min(Math.max(scrollTop / maxScroll, 0), 1);
+            progressBar.style.transform = `scaleX(${progress})`;
+          });
         };
 
         window.addEventListener('scroll', updateProgress, { passive: true });
         updateProgress();
-      }
-
-      setupTextAnimations() {
-        const splitTextElements = document.querySelectorAll('.split-text');
-
-        splitTextElements.forEach(element => {
-          const text = element.textContent;
-          element.innerHTML = '';
-
-          text.split('').forEach((char, index) => {
-            const span = document.createElement('span');
-            span.textContent = char === ' ' ? '\u00A0' : char;
-            span.className = 'char-reveal';
-            span.style.transitionDelay = `${index * 0.05}s`;
-            element.appendChild(span);
-          });
-        });
-
-        // Trigger text reveals when in viewport
-        const textObserver = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              const chars = entry.target.querySelectorAll('.char-reveal');
-              chars.forEach(char => char.classList.add('revealed'));
-            }
-          });
-        }, { threshold: 0.5 });
-
-        splitTextElements.forEach(el => textObserver.observe(el));
-      }
-
-      setupParallax() {
-        const parallaxElements = document.querySelectorAll('.parallax-slow, .parallax-fast');
-
-        const updateParallax = () => {
-          const scrollTop = window.pageYOffset;
-
-          parallaxElements.forEach(element => {
-            const speed = element.classList.contains('parallax-slow') ? 0.5 : 0.3;
-            const yPos = -(scrollTop * speed);
-            element.style.transform = `translateY(${yPos}px)`;
-          });
-        };
-
-        window.addEventListener('scroll', updateParallax, { passive: true });
-      }
-
-      setupMagneticHover() {
-        const magneticElements = document.querySelectorAll('.magnetic-hover');
-
-        magneticElements.forEach(element => {
-          element.addEventListener('mousemove', (e) => {
-            const rect = element.getBoundingClientRect();
-            const x = e.clientX - rect.left - rect.width / 2;
-            const y = e.clientY - rect.top - rect.height / 2;
-
-            const distance = Math.sqrt(x * x + y * y);
-            const maxDistance = 100;
-            const strength = Math.max(0, 1 - distance / maxDistance);
-
-            const moveX = (x / 10) * strength;
-            const moveY = (y / 10) * strength;
-
-            element.style.transform = `translate(${moveX}px, ${moveY}px)`;
-          });
-
-          element.addEventListener('mouseleave', () => {
-            element.style.transform = 'translate(0, 0)';
-          });
-        });
       }
 
       setupYear() {
@@ -725,20 +575,6 @@
     // Initialize animations when DOM is ready
     document.addEventListener('DOMContentLoaded', () => {
       new AnimationController();
-    });
-
-    // Smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
-        }
-      });
     });
   </script>
 </body>
