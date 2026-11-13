@@ -8,7 +8,7 @@
   <meta name="theme-color" content="#0B0E19">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>Nirmal Katariya</title>
-  <meta name="description" content="Nirmal Katariya - Associate System Engineer at Goldman Sachs">
+  <meta name="description" content="Nirmal Katariya: systems engineer, Linux enjoyer and part-time computer archaeologist.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="apple-touch-icon" href="favicon.png">
@@ -185,8 +185,8 @@
         <div class="grid items-center gap-4 md:gap-6 text-left md:grid-cols-[1fr_auto]">
           <div class="reveal-left">
             <h1 class="font-display text-5xl font-bold md:text-6xl text-ctp-text">Hi, I'm Nirmal</h1>
-            <p class="reveal mt-3 text-xl font-medium text-ctp-subtext1 md:text-2xl">Associate System Engineer at Goldman Sachs
-              | IIT Jodhpur</p>
+            <p class="reveal mt-3 text-xl font-medium text-ctp-subtext1 md:text-2xl">Systems engineer, Linux enjoyer and
+              part-time computer archaeologist.</p>
           </div>
           <img src="IMG_20221203_110519~2.jpg" alt="Portrait of Nirmal" width="480" height="480" fetchpriority="high"
             class="reveal-right mx-auto mt-6 mb-2 h-56 w-56 rounded-full object-cover ring-2 ring-ctp-surface1 shadow-glass md:mt-0 md:mb-0 md:h-60 md:w-60 md:ml-6"
@@ -214,10 +214,9 @@
     <section id="about" class="relative pt-6 pb-6 sm:pt-10 sm:pb-8">
       <div class="mx-auto w-[min(900px,92vw)]">
         <h2 class="reveal font-display text-4xl md:text-5xl text-ctp-text">About</h2>
-        <p class="reveal mt-4 text-lg md:text-xl text-ctp-subtext0 max-w-3xl">I’m a full-time Linux enjoyer and part-time
-          computer archaeologist, forever digging up hardware memories like they’re rare loot. I love tinkering with
-          PCs, breaking things “for science,” and customizing my setup until it’s 10% faster and 200% cooler. If it
-          boots, beeps, or has a suspiciously loud fan, I’m emotionally attached already.</p>
+        <p class="reveal mt-4 text-lg md:text-xl text-ctp-subtext0 max-w-3xl">I’m a systems engineer in site
+          reliability, supporting production infrastructure for straight-through processing applications. I build the
+          tooling that keeps it healthy: SLOs, Prometheus, Alertmanager and BigQuery.</p>
         <div class="stagger mt-6 grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
           <div
             class="motion-lift rounded-xl border border-ctp-surface0 bg-ctp-surface0/30 p-6 backdrop-blur hover:bg-ctp-surface0/70 hover:border-ctp-surface1 transition-colors duration-300">
@@ -227,7 +226,7 @@
               </svg>
             </div>
             <h3 class="font-semibold text-lg text-ctp-text">Expertise</h3>
-            <p class="mt-2 text-sm text-ctp-subtext1">C++, FIX</p>
+            <p class="mt-2 text-sm text-ctp-subtext1">SRE, SLOs &amp; SLIs, Prometheus, Alertmanager, BigQuery, Linux, Python</p>
           </div>
           <div
             class="motion-lift rounded-xl border border-ctp-surface0 bg-ctp-surface0/30 p-6 backdrop-blur hover:bg-ctp-surface0/70 hover:border-ctp-surface1 transition-colors duration-300">
@@ -237,7 +236,7 @@
               </svg>
             </div>
             <h3 class="font-semibold text-lg text-ctp-text">Currently</h3>
-            <p class="mt-2 text-sm text-ctp-subtext1">Supporting STP flows and trade booking at their front desk</p>
+            <p class="mt-2 text-sm text-ctp-subtext1">Production support and SRE development</p>
           </div>
           <div
             class="motion-lift rounded-xl border border-ctp-surface0 bg-ctp-surface0/30 p-6 backdrop-blur hover:bg-ctp-surface0/70 hover:border-ctp-surface1 transition-colors duration-300">
@@ -265,16 +264,15 @@
                   <div class="w-3 h-3 bg-ctp-mauve rounded-full motion-safe:animate-pulse"></div>
                   <h3 class="text-xl md:text-2xl font-semibold text-ctp-text">Associate System Engineer</h3>
                 </div>
-                <p class="text-ctp-mauve font-medium">Goldman Sachs</p>
-                <p class="mt-3 text-sm md:text-base text-ctp-subtext1">
+                <p class="text-sm md:text-base text-ctp-subtext1">
                   Full-time · May 2025 – Present ·
-                  <span id="gs-months"></span>
+                  <span id="current-months"></span>
                 </p>
                 <div class="mt-4 flex flex-wrap gap-2">
-                  <span class="px-3 py-1 rounded-full bg-ctp-mauve/20 text-ctp-mauve text-xs font-medium">Financial
-                    Services</span>
-                  <span class="px-3 py-1 rounded-full bg-ctp-mauve/20 text-ctp-mauve text-xs font-medium">Trading
-                    Systems</span>
+                  <span class="px-3 py-1 rounded-full bg-ctp-mauve/20 text-ctp-mauve text-xs font-medium">Site
+                    Reliability</span>
+                  <span class="px-3 py-1 rounded-full bg-ctp-mauve/20 text-ctp-mauve text-xs font-medium">Production
+                    Support</span>
                 </div>
               </div>
               <time class="shrink-0 text-sm text-ctp-subtext0 whitespace-nowrap">May 2025 – Present</time>
@@ -286,7 +284,7 @@
                   const now = new Date();
                   let months = (now.getFullYear() - start.getFullYear()) * 12 + (now.getMonth() - start.getMonth());
                   if (months < 0) months = 0;
-                  document.getElementById('gs-months').textContent = months + (months === 1 ? ' mo' : ' mos');
+                  document.getElementById('current-months').textContent = months + (months === 1 ? ' mo' : ' mos');
                 })();
             </script>
           </div>
@@ -298,9 +296,9 @@
               <div class="flex-1">
                 <div class="flex items-center gap-3 mb-2">
                   <div class="w-3 h-3 bg-ctp-lavender rounded-full"></div>
-                  <h3 class="text-xl md:text-2xl font-semibold text-ctp-text">Capgemini</h3>
+                  <h3 class="text-xl md:text-2xl font-semibold text-ctp-text">Earlier roles</h3>
                 </div>
-                <p class="text-ctp-lavender font-medium mb-3">Full-time · 2 yrs 10 mos · Bengaluru, Karnataka, India</p>
+                <p class="text-ctp-lavender font-medium mb-3">Full-time · 2 yrs 10 mos</p>
                 <div class="space-y-3">
                   <div class="flex items-start gap-3">
                     <div class="w-2 h-2 bg-ctp-lavender rounded-full mt-2 flex-shrink-0 opacity-80"></div>
@@ -370,7 +368,7 @@
             <div class="reveal-left">
               <h3 class="text-2xl font-semibold mb-6 text-ctp-text">Get in Touch</h3>
               <div class="space-y-4">
-                <a href="mailto:katariya.1@iitj.ac.in"
+                <a href="mailto:contact@nirmalkatariya.com"
                   class="motion-lift flex items-center gap-4 p-4 rounded-xl border border-ctp-surface0 bg-ctp-surface0/30 backdrop-blur hover:bg-ctp-surface0/70 hover:border-ctp-surface1 transition-colors duration-300">
                   <div
                     class="w-12 h-12 rounded-lg bg-ctp-sapphire/20 flex items-center justify-center group-hover:scale-110 transition-transform">
@@ -380,7 +378,7 @@
                   </div>
                   <div>
                     <p class="font-medium text-ctp-text">Email</p>
-                    <p class="text-sm text-ctp-subtext1">katariya.1@iitj.ac.in</p>
+                    <p class="text-sm text-ctp-subtext1">contact@nirmalkatariya.com</p>
                   </div>
                 </a>
 
